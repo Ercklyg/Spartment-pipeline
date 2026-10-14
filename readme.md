@@ -261,14 +261,14 @@ The checks below cover extraction-level validation only. Data cleaning, standard
 | Check Name | Target | Purpose | Validation Criteria (Pass / Fail) |
 | --- | --- | --- | --- |
 | Source connection and accessibility | Supabase/PostgreSQL connection | Confirm the source is reachable | PASS: connection succeeds; FAIL: connection error or timeout → log error and stop the run |
-| Required tables and columns exist | Selected tables and columns in §2 | Detect schema changes | PASS: all required tables and columns exist; FAIL: any required table or column is missing |
+| Required tables and columns exist | Selected tables and columns in 2 | Detect schema changes | PASS: all required tables and columns exist; FAIL: any required table or column is missing |
 | Required identifiers present | Primary keys and required relationship fields | Ensure records can be traced and related | PASS: no null required identifiers; FAIL: null required identifiers → flag or quarantine affected records |
 | Primary key uniqueness | `id` in each selected table | Detect duplicate identifiers | PASS: no duplicate primary keys; FAIL: duplicates found → fail table validation |
 | Record count and completeness | Extracted rows compared with source rows for the same scope | Detect incomplete extraction | PASS: counts match; WARNING: unexplained count difference; FAIL: interrupted or clearly incomplete extraction |
 | Referential completeness | Selected room, tenant, building, and lease references | Detect orphaned references | PASS: references resolve where the related table is available; WARNING/FAIL: unresolved references are recorded and reviewed |
 | Numeric range sanity | `monthly_rate`, `monthly_rent`, `rent_amount`, `electricity_amount`, `water_amount` | Flag obviously invalid negative amounts | PASS: no unexpected negative values; WARNING: violations flagged for the transformation stage |
 | Date sanity | `move_in`, `lease_end`, `billing_period`, `due_date`, `move_in_date` | Flag invalid or inconsistent dates | PASS: dates can be read and parsed; WARNING: suspicious date relationships are flagged for review |
-| Extraction errors or interruptions | Python extraction task / Airflow task | Identify partial or failed runs | PASS: task completes without error; FAIL: exception or timeout → retry according to §1.4 |
+| Extraction errors or interruptions | Python extraction task / Airflow task | Identify partial or failed runs | PASS: task completes without error; FAIL: exception or timeout → retry according to 1.4 |
 
 ---
 
@@ -294,7 +294,8 @@ Each extraction run should record the following fields for monitoring, troublesh
 
 Example log record (JSON):
 
-\`\`\`json
+Example log record (JSON):
+
 {
   "pipeline_run_id": "spartment-extract-2026-10-14-0100",
   "table_name": "rooms",
@@ -310,7 +311,6 @@ Example log record (JSON):
   "error_message": null,
   "extraction_duration_ms": 135000
 }
-\`\`\`
 
 The example values are illustrative and are not actual execution results.
 
