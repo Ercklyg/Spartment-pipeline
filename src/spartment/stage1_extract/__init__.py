@@ -1,0 +1,1 @@
+"""Stage 1: extraction from the Spartment source into rawdata/."""

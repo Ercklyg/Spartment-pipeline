@@ -1,0 +1,14 @@
+# Credentials. Never commit.
+.env
+
+# Staged datasets and run records are reproducible and may contain personal data.
+rawdata/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/

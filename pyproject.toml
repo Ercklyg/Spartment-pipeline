@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "spartment-pipeline"
+version = "0.1.0"
+description = "Spartment apartment management ETL pipeline"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.optional-dependencies]
+airflow = ["apache-airflow>=2.7"]
+
+[project.scripts]
+spartment-extract = "spartment.stage1_extract.cli:main"
+spartment-retain = "spartment.common.retention:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["spartment*"]

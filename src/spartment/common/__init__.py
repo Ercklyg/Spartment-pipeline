@@ -1,0 +1,1 @@
+"""Shared configuration, records and utilities used by every pipeline stage."""
