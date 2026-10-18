@@ -1,0 +1,31 @@
+# Spartment pipeline configuration.
+#
+# Non secret settings only. Credentials come from the environment; see
+# .env.example for the expected variable names.
+
+[source]
+# SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are read from the environment.
+# The database superuser password is never required and must never be added here.
+
+[extraction]
+# "full" is the only supported mode until change tracking is verified.
+# See docs/extraction.md section 1.3.
+mode = "full"
+timezone = "Asia/Manila"
+page_size = 1000
+retry_limit = 3
+retry_backoff_seconds = 2.0
+request_timeout_seconds = 60.0
+
+[retention]
+# Staged datasets and per table run metadata.
+operational_days = 90
+# Validation and handover records, which justify acceptance decisions.
+audit_days = 365
+
+[options]
+# Select the additional columns that the original contract omitted. They are
+# strictly additive. See docs/extraction.md section 2.1.
+include_extra_columns = true
+# Reject the run on any schema drift instead of quarantining the affected table.
+strict_contract = false
