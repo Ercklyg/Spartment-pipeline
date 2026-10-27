@@ -1,5 +1,5 @@
-"""Stage 2: transformation, cleaning and standardisation of rawdata/.
+"""Stage 2: transform the Stage 1 handover into the analytical star schema."""
 
-Not yet implemented. This package exists so that later stages compose without
-importing Stage 1 internals.
-"""
+from spartment.stage2_transform.pipeline import transform
+
+__all__ = ["transform"]
