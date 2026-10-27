@@ -14,6 +14,8 @@ airflow = ["apache-airflow>=2.7"]
 
 [project.scripts]
 spartment-extract = "spartment.stage1_extract.cli:main"
+spartment-transform = "spartment.stage2_transform.cli:main"
+spartment-transform-retain = "spartment.stage2_transform.retention:main"
 spartment-retain = "spartment.common.retention:main"
 
 [tool.setuptools.packages.find]

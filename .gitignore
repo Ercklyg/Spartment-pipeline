@@ -3,6 +3,9 @@
 
 # Staged datasets and run records are reproducible and may contain personal data.
 rawdata/
+transformed/
+logs/
+quarantine/
 
 # Python
 __pycache__/

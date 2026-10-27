@@ -352,7 +352,7 @@ Exact target columns and types are listed in Section 6.1.
 | J-12 | `tenant_occupancy_events` | `leases`, `profiles` | `previous_lease_id`, `tenant_id`, `performed_by` | INNER (many:1 each) | Required references are rejected by C-10 when missing |
 | J-13 | `tenant_occupancy_events` | `leases` | `new_lease_id` | LEFT (many:0..1) | NULL on a move-out is retained; a non-NULL value must resolve |
 
-**Join cardinality guarantee:** every right-hand key is unique after C-06 and Stage 1 primary-key validation. Therefore no join can multiply rows. Validation V-07 compares pre-join and post-join row counts; any increase is a critical failure.
+**Join cardinality guarantee:** every right-hand key is unique after C-06 and Stage 1 primary-key validation. Therefore no join can multiply rows. Validation V-07 compares the accepted left-row count with the post-join output count for J-01 to J-13; any change is a critical failure.
 
 ### 5.3 Filtering and Business Exclusions
 
@@ -761,7 +761,7 @@ All source columns not listed as derived are carried through after C-01 trimming
 
 Unexpected changes in the **staged input** are handled as follows:
 
-1. **Input schema check.** Before any cleaning rule runs, each staged CSV header is compared against the Stage 1 contract in `src/spartment/stage1_extract/contract.py` and the `data_contract.column_manifest` in the parent handover. A missing required column is a **critical** failure.
+1. **Input schema check.** Before any cleaning rule runs, each staged CSV header is compared against Stage 2's frozen copy of the Stage 1 column contract and the `data_contract.column_manifest` in the parent handover. Every manifest entry must declare a supported column type token; a missing required column or invalid type declaration is a **critical** failure.
 2. **No sidecar dependency.** Stage 1 does not emit per-table `.schema.json` files. Stage 2 must not assume they exist. The handover manifest is the authoritative type source.
 3. **Fail fast, no silent coercion.** The batch stops before writing output. Missing columns are never defaulted to NULL, and extra columns are never silently dropped; both are logged.
 4. **Added columns tolerated.** A new optional column in the staged input is logged as `input_column_unmapped` and ignored. It does not fail the batch, because Stage 1 may extend its own contract independently.
@@ -803,20 +803,20 @@ These checks verify the **transformed output**. Stage 1 validation is not repeat
 | **V-04** Natural key uniqueness | Every `*_id` | Preserve source grain | PASS: 0 duplicates per natural key. FAIL: >0 | **Critical** |
 | **V-05** Required columns NOT NULL | Every NOT NULL column in Section 6.1 | Catch rows that escaped C-13 with a missing key or measure | PASS: 0 NULLs. FAIL: >0 | **Critical** |
 | **V-06** Referential integrity | Every non-null FK in Section 6.1 | Prevent orphans in the transformed model | PASS: 100% of non-null FKs resolve. FAIL: any non-null orphan | **Critical** |
-| **V-07** Join cardinality | Joins J-01…J-13 | Catch a non-unique lookup key inflating totals | PASS: post-join row count equals pre-join row count for every required join. FAIL: any increase | **Critical** |
+| **V-07** Join cardinality | Joins J-01…J-13 | Catch a non-unique lookup key or row loss during joins | PASS: post-join row count equals the accepted left-row count for every required join and all right-hand keys are unique. FAIL: any row-count change or duplicate parent key | **Critical** |
 | **V-08** Non-negative measures | `monthly_rate`, `monthly_rent`, `rent_amount`, `electricity_amount`, `water_amount`, `total_amount`, `amount_paid`, `balance`, `amount` | Enforce commercial invariants | PASS: 0 negative values. FAIL: >0 | **Critical** |
 | **V-09** Bill total identity | `total_amount`, components | Prove the total is the sum of its parts | PASS: `total_amount = rent + electricity + water` within 0.01. FAIL: otherwise | **Critical** |
 | **V-10** Bill balance identity | `total_amount`, `amount_paid`, `balance` | Prove the payment ledger reconciles | PASS: `balance = MAX(total_amount - amount_paid, 0)` within 0.01. FAIL: otherwise | **Critical** |
 | **V-11** Date ordering | `due_date`, `billing_period_date`, lease and assignment dates | Catch impossible date states after C-07/C-08 | PASS: `due_date >= billing_period_date`; end date is NULL or `>= move_in`. FAIL: >0 violations | **Critical** |
 | **V-12** Assignment-room invariant | `fact_assignment.status`, `room_key` | Enforce the source invariant | PASS: every `ACTIVE` has a room; every `ENDED` has none. FAIL: >0 violations | **Critical** |
-| **V-13** Payment reconciliation | `SUM(fact_payment.amount)` vs staged `payments.amount`, net of C-06/X-04 | Prove collections were not silently altered | PASS: sums agree within 0.01. FAIL: otherwise | **Critical** |
-| **V-14** Bill component reconciliation | `SUM` of each bill component vs staged `bills`, net of C-05/C-06 | Prove cleaning did not alter billed amounts | PASS: sums agree within 0.01. FAIL: otherwise | **Critical** |
+| **V-13** Payment reconciliation | `SUM(fact_payment.amount)` vs staged `payments.amount`, net of every removed source row | Prove collections were not silently altered | PASS: sums agree within 0.01. FAIL: otherwise. Removed rows include C-05, C-06, C-10, C-13, and X-04 rejections so legitimate quarantine does not create a false failure | **Critical** |
+| **V-14** Bill component reconciliation | `SUM` of each bill component vs staged `bills`, net of every removed source row | Prove cleaning did not alter billed amounts | PASS: sums agree within 0.01. FAIL: otherwise. Removed rows include cleaning, duplicate, and referential rejections so legitimate quarantine does not create a false failure | **Critical** |
 | **V-15** Exclusion accounting | X-01…X-06 counters | Prove business exclusions are counted and reported | PASS: every exclusion has a counter and the count equals the rows affected. FAIL: missing counter | **Non-critical** |
 | **V-16** Type / format conformance | Every output column vs Section 6.1 | Confirm CSV values parse as the contracted type | PASS: 0 values fail parse or format. FAIL: >0 | **Non-critical** |
 | **V-17** Code domain conformance | `status`, `role`, `priority`, `kind`, `bill_type`, `overdue_bucket`, `event_type`, `billing_period` | Confirm code sets are respected | PASS: 100% within Section 4.3 and Section 6.1. FAIL: any out-of-domain value | **Non-critical** |
 | **V-18** Null rate on optional columns | `phone`, `email`, `lease_end`, `room_key` on nullable facts, `reference_note` | Track degradation of optional data | PASS: within baseline. WARNING: increased vs previous run. FAIL: >90% | **Non-critical** |
 | **V-19** Unmapped code rate | `code_unmapped` flags | Detect new code variants | PASS: ≤1% of rows. WARNING: 1–5%. FAIL: >5% | **Non-critical** |
-| **V-20** Rejection rate | Per table and overall | Decide acceptance against the pre-declared threshold | PASS: ≤1.0%. WARNING: >1.0% and ≤5.0%. FAIL: >5.0% | **Critical** for FAIL; **Non-critical** for WARNING |
+| **V-20** Rejection rate | Per table and overall | Decide acceptance against the pre-declared threshold | PASS: ≤1.0%. WARNING: >1.0% and ≤5.0%. FAIL: >5.0%. C-06 duplicates are reported by V-02 and are not included in this rate | **Critical** for FAIL; **Non-critical** for WARNING |
 | **V-21** Idempotency assertion | Output of a repeat run | Prove Section 1.4's claim | PASS: same `run_date` and `parent_run_id` produce the same content checksum. FAIL: any difference not explained by a rules-version change | **Non-critical** |
 | **V-22** Lineage completeness | `transformation_run_id` on every row | Make every output row traceable | PASS: 0 missing or mismatched values. FAIL: >0 | **Critical** |
 | **V-23** Sensitive data absence | All output files | Ensure no credential or `auth.users` payload leaks | PASS: 0 credential fields or DSN fragments. FAIL: >0 | **Critical** |
@@ -923,8 +923,8 @@ Stage 2 records, ownership, and retention are defined **separately** from Stage 
 | **Retention period** | Operational transformation logs: minimum **90 days** (`retention.operational_days` in `config/extraction.toml`). Audit-relevant run summaries (`run_id`, `parent_run_id`, window, counts, `rules_applied`, `validation_results`, `rules_version`): minimum **1 year** (`retention.audit_days`). Justification: the bill-aging bucket (B-12) and the flagged-tenant rule (B-15) mean a single tenancy decision may require reading back up to a year of transformation history to explain an `outstanding_bill_count`. |
 | **Storage location** | `logs/spartment-transformation/<run_date>/<run_id>_<table>.json`, alongside the Airflow task log for the same `run_id`. Output data lives in `transformed/<table>/<run_date>/`. |
 | **Access permissions** | Data engineers and Super Admin (read). Write restricted to the transformation service account / Airflow worker. No tenant, landlord, or leasing-clerk access. Credentials are never written to logs. |
-| **Archiving** | Logs older than 90 days are compressed and moved to cold storage. Audit summaries stay online for 1 year. The archive preserves `run_id` and `parent_run_id` indexing so any lineage lookup still resolves. |
-| **Deletion rules** | Logs must not be deleted before the retention period, or while needed for troubleshooting, auditing, or recovery. Deletion after retention requires data-engineer approval and is itself logged. Operational logs may be purged after 90 days; audit records only after 1 year. |
+| **Archiving** | Per-table logs older than 90 days are gzip-compressed and moved to `logs/spartment-transformation/_archive/<run_date>/<run_id>_<table>.json.gz`. Audit summaries stay online for 1 year. The archive mirrors the online filenames so `run_id` and `parent_run_id` indexing still resolves. |
+| **Deletion rules** | Logs must not be deleted before the retention period, or while needed for troubleshooting, auditing, or recovery. Deletion after retention requires data-engineer approval and is itself logged. Operational logs are archived after 90 days; audit summaries only after 1 year. The `spartment-transform-retain` command is a dry run by default; `--apply` archives/removes expired logs and writes the deletion audit record under `logs/spartment-transformation/_retention/`. The scheduled DAG only archives expired operational table logs. |
 
 ### 9.2 Quarantine (Rejected Records)
 
@@ -935,7 +935,7 @@ Stage 2 records, ownership, and retention are defined **separately** from Stage 
 | **Content** | One row per rejected record: `run_id`, `parent_run_id`, `table_name`, `rule_id` (the C-/S-/X- rule that rejected it), `rejection_reason` (free text), and the source column values needed to diagnose the issue. |
 | **Data minimization** | Only columns necessary to diagnose the rejection are stored. `profiles.phone`, `tenant_assignments.phone`, and `inquiries.phone` are **masked** (e.g. `09***1234`) in quarantine, since a rejected row has no analytical need for readable PII. No password, token, or `auth.users` field is ever written anywhere in this stage — Stage 1 does not extract them and V-23 asserts their absence. |
 | **Access permissions** | Data engineers and Super Admin only (read). Write restricted to the transformation service account. |
-| **Deletion rules** | Never deleted before 1 year. Deletion requires data-engineer approval and is logged. Rejected financial records (bills, payments, corrections) additionally require Super Admin approval. |
+| **Deletion rules** | Never deleted before 1 year. Deletion requires data-engineer approval and is logged. Rejected financial records (bills, payments, corrections) additionally require Super Admin approval. Quarantine is excluded from scheduled retention and is deleted only with `spartment-transform-retain --apply --include-quarantine` after those approvals are recorded. |
 | **Reprocessing** | A quarantined record may be re-admitted by fixing the source and re-running Stage 1 for that window, then reprocessing the transformation batch. Records are **not** manually promoted from quarantine, because that would bypass the reconciliation count in V-01. |
 
 ### 9.3 Ownership Summary
