@@ -78,6 +78,7 @@ from spartment.stage2_transform.writer import (
     sort_rows,
     write_quarantine,
 )
+from spartment.stage2_transform.null_profile import OPTIONAL_NULL_PROFILE_VERSION, optional_null_profile
 
 
 def _relative(path: Path) -> str:
@@ -383,6 +384,8 @@ def transform(
             "transformation_duration_ms": duration_ms,
             "rules_version": RULES_VERSION,
             "null_rates": _null_rates(table, outputs[table]),
+            "optional_null_profile_version": OPTIONAL_NULL_PROFILE_VERSION,
+            "optional_null_profile": optional_null_profile(table, outputs[table]),
             "profile_counts": {
                 key: value
                 for key, value in ctx.profile_counts.items()

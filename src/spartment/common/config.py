@@ -47,7 +47,10 @@ def _parse_env_file(path: Path) -> None:
         if not line or line.startswith("#") or "=" not in line:
             continue
         key, _, value = line.partition("=")
-        os.environ.setdefault(key.strip(), value.strip().strip('"').strip("'"))
+        parsed = value.strip()
+        if len(parsed) >= 2 and parsed[0] == parsed[-1] and parsed[0] in {"'", '"'}:
+            parsed = parsed[1:-1]
+        os.environ.setdefault(key.strip(), parsed)
 
 
 def load_env() -> None:

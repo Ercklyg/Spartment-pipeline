@@ -2,13 +2,15 @@
 
 Operational and analytical batch data pipeline for the Spartment apartment management system.
 
-Stage 1 extracts the operational tables from Supabase into `rawdata/`, validates them, and records an acceptance decision. Stage 2 transforms one validated Stage 1 batch into the analytical model under `transformed/`. Stage 3 (load) is reserved.
+Stage 1 extracts the operational tables from the source Supabase app project into `rawdata/`, validates them, and records an acceptance decision. Stage 2 transforms one validated Stage 1 batch into the analytical model under `transformed/`. Stage 3 validates an approved transformation handover and publishes all 13 tables into the existing Supabase warehouse in one transaction, preserving its `warehouse_meta` batch history.
 
 ## Documentation
 
 - [Stage 1: Data Extraction](docs/extraction.md) - extraction specification, data contract, and operations runbook
 - [Stage 2: Data Transformation](docs/transformation.md) - transformation specification and output contract
-- [Stage 3: Data Load](docs/load.md) - proposed load specification, target data contract, validation, and recovery rules
+- [Stage 3: Data Load](docs/load.md) - Supabase destination setup, existing contract, validation, retention, and recovery
+- [Load verification](docs/load-verification.md) - integration evidence and deployment limits
+- [Supabase compatibility](docs/supabase-compatibility.md) - observed existing schema and non-destructive adapter behavior
 
 ## Layout
 
@@ -19,7 +21,7 @@ src/spartment/
   common/                     config, models, JSON writers, retention
   stage1_extract/             contract, source, guard, extract, validate, handover, cli
   stage2_transform/           cleaning, dimensions, facts, validation, handover, cli
-  stage3_load/                reserved
+  stage3_load/                schema, package checks, COPY, reconciliation, backup, recovery
 migrations/                   SQL migrations for the source database
 docs/                         stage specifications
 rawdata/                      staged output, not version controlled
@@ -30,6 +32,8 @@ quarantine/                   rejected records, not version controlled
 
 Stages are independent packages. Stage 2 reads `rawdata/` and imports `spartment.common.models`; it never imports Stage 1 internals and never connects to Supabase.
 
+Stage 3 consumes Stage 2's public output contract and approved CSV handover. It never connects to the operational Supabase source. It requires the optional PostgreSQL driver: `pip install -e ".[load]"`.
+
 ## Setup
 
 ```bash
@@ -37,7 +41,7 @@ pip install -e .
 cp .env.example .env      # then fill in SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY
 ```
 
-The `.env` file lives at the repository root and is excluded from version control. A database superuser password is never required.
+The `.env` file lives at the repository root and is excluded from version control. Stage 1 uses the original app project's API URL/service-role key. Stage 3 uses the destination warehouse's PostgreSQL DSNs; the managed owner login provisions a separate restricted runtime role. Keep source and destination credentials distinct.
 
 If the console scripts are not on your PATH, use the module form:
 
@@ -61,6 +65,15 @@ spartment-transform                      # transform the current Stage 1 batch
 spartment-transform --parent-run-id ID   # transform a specific Stage 1 run
 spartment-transform --allow-manual-review  # release a held MANUAL REVIEW batch
 spartment-transform --dry-run            # validate without writing files
+
+spartment-load inspect --owner          # read-only existing Supabase schema/count check
+spartment-load provision-existing --role spartment_activity_loader  # new role only; refuses to reset an existing role
+spartment-load inspect                  # verify saved restricted runtime connection
+spartment-load run --handover PATH --dry-run  # stage and check, roll back
+spartment-load run --handover PATH       # publish one exact approved handover
+spartment-load reconcile --run-id ID     # resolve interrupted/unknown commit evidence
+spartment-load-retain                    # operational-log retention preview
+spartment-load-retain --apply            # archive table logs after 90 days
 
 spartment-retain                         # Stage 1 retention dry run, nothing removed
 spartment-retain --apply                 # perform Stage 1 deletions
@@ -130,3 +143,7 @@ Run ids are `spartment-extract-<date>-<HHMM>` and `spartment-transform-<date>-<H
 The Airflow DAG `spartment_daily_extraction` runs at 01:00 Asia/Manila daily with 3 retries and exponential backoff. Tasks: `extract_and_validate` -> `acceptance_gate` -> `retain`. Credentials come from the Airflow connection `spartment_postgres`.
 
 The Airflow DAG `spartment_daily_transformation` runs at 02:00 Asia/Manila daily. Tasks: `transform_and_validate` -> `acceptance_gate` -> `retain`. Only transformation read/parse failures retry (3 retries, 5-minute exponential backoff); schema/data defects fail immediately. The acceptance gate runs after a successful transformation, resolves the parent Stage 1 run from the DAG logical date, holds promotion when the decision is `MANUAL REVIEW`, and fails the DAG for rejected batches. The retention task runs regardless of upstream failure.
+
+Stage 3's optional Airflow DAG `spartment_daily_load` runs at 03:00 Asia/Manila and waits for approved transformation evidence for the logical date. It enforces approval again before publication; a Stage 2 manual-release flag cannot bypass the Load approval gate.
+
+For a free Windows setup, `python -m spartment.stage3_load.daily` runs all three stages sequentially and stops on upstream rejection or warning. `tools/register_daily_task.ps1` creates a disabled daily 01:00 Task Scheduler task for review. Choose Windows scheduling or Airflow; the laptop must be awake during execution. See [Load setup and verification](docs/load.md#10-commands-verification-and-activity-completion) for environment variables, testing, and activation requirements.
