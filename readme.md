@@ -8,6 +8,7 @@ Stage 1 extracts the operational tables from Supabase into `rawdata/`, validates
 
 - [Stage 1: Data Extraction](docs/extraction.md) - extraction specification, data contract, and operations runbook
 - [Stage 2: Data Transformation](docs/transformation.md) - transformation specification and output contract
+- [Stage 3: Data Load](docs/load.md) - proposed load specification, target data contract, validation, and recovery rules
 
 ## Layout
 
