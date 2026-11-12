@@ -1,0 +1,4334 @@
+{
+  "version": "1.0",
+  "fingerprint": "2773f1dee48e86f3596496328195204b83687027bc8ccd2e8a027cb6bcd8d858",
+  "catalog": {
+    "columns": [
+      {
+        "udt_name": "bpchar",
+        "data_type": "character",
+        "table_name": "dim_building",
+        "column_name": "building_key",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 1,
+        "numeric_precision": null,
+        "character_maximum_length": 16
+      },
+      {
+        "udt_name": "uuid",
+        "data_type": "uuid",
+        "table_name": "dim_building",
+        "column_name": "building_id",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 2,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "varchar",
+        "data_type": "character varying",
+        "table_name": "dim_building",
+        "column_name": "name",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 3,
+        "numeric_precision": null,
+        "character_maximum_length": 200
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "dim_building",
+        "column_name": "address",
+        "is_nullable": "YES",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 4,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "int4",
+        "data_type": "integer",
+        "table_name": "dim_building",
+        "column_name": "room_count",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": 0,
+        "column_default": null,
+        "ordinal_position": 5,
+        "numeric_precision": 32,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "int4",
+        "data_type": "integer",
+        "table_name": "dim_building",
+        "column_name": "occupied_rooms",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": 0,
+        "column_default": null,
+        "ordinal_position": 6,
+        "numeric_precision": 32,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "int4",
+        "data_type": "integer",
+        "table_name": "dim_building",
+        "column_name": "available_rooms",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": 0,
+        "column_default": null,
+        "ordinal_position": 7,
+        "numeric_precision": 32,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "numeric",
+        "data_type": "numeric",
+        "table_name": "dim_building",
+        "column_name": "occupancy_rate",
+        "is_nullable": "YES",
+        "table_schema": "warehouse",
+        "numeric_scale": 4,
+        "column_default": null,
+        "ordinal_position": 8,
+        "numeric_precision": 9,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "numeric",
+        "data_type": "numeric",
+        "table_name": "dim_building",
+        "column_name": "vacancy_gap",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": 2,
+        "column_default": null,
+        "ordinal_position": 9,
+        "numeric_precision": 12,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "timestamptz",
+        "data_type": "timestamp with time zone",
+        "table_name": "dim_building",
+        "column_name": "created_at",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 10,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "varchar",
+        "data_type": "character varying",
+        "table_name": "dim_building",
+        "column_name": "transformation_run_id",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 11,
+        "numeric_precision": null,
+        "character_maximum_length": 64
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "dim_building",
+        "column_name": "load_batch_id",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 12,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "bpchar",
+        "data_type": "character",
+        "table_name": "dim_date",
+        "column_name": "date_key",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 1,
+        "numeric_precision": null,
+        "character_maximum_length": 8
+      },
+      {
+        "udt_name": "date",
+        "data_type": "date",
+        "table_name": "dim_date",
+        "column_name": "date",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 2,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "int2",
+        "data_type": "smallint",
+        "table_name": "dim_date",
+        "column_name": "year",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": 0,
+        "column_default": null,
+        "ordinal_position": 3,
+        "numeric_precision": 16,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "int2",
+        "data_type": "smallint",
+        "table_name": "dim_date",
+        "column_name": "quarter",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": 0,
+        "column_default": null,
+        "ordinal_position": 4,
+        "numeric_precision": 16,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "int2",
+        "data_type": "smallint",
+        "table_name": "dim_date",
+        "column_name": "month",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": 0,
+        "column_default": null,
+        "ordinal_position": 5,
+        "numeric_precision": 16,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "varchar",
+        "data_type": "character varying",
+        "table_name": "dim_date",
+        "column_name": "month_name",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 6,
+        "numeric_precision": null,
+        "character_maximum_length": 9
+      },
+      {
+        "udt_name": "int2",
+        "data_type": "smallint",
+        "table_name": "dim_date",
+        "column_name": "week",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": 0,
+        "column_default": null,
+        "ordinal_position": 7,
+        "numeric_precision": 16,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "int2",
+        "data_type": "smallint",
+        "table_name": "dim_date",
+        "column_name": "day_of_month",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": 0,
+        "column_default": null,
+        "ordinal_position": 8,
+        "numeric_precision": 16,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "int2",
+        "data_type": "smallint",
+        "table_name": "dim_date",
+        "column_name": "day_of_week",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": 0,
+        "column_default": null,
+        "ordinal_position": 9,
+        "numeric_precision": 16,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "varchar",
+        "data_type": "character varying",
+        "table_name": "dim_date",
+        "column_name": "day_name",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 10,
+        "numeric_precision": null,
+        "character_maximum_length": 9
+      },
+      {
+        "udt_name": "bool",
+        "data_type": "boolean",
+        "table_name": "dim_date",
+        "column_name": "is_weekend",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 11,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "bpchar",
+        "data_type": "character",
+        "table_name": "dim_date",
+        "column_name": "billing_period",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 12,
+        "numeric_precision": null,
+        "character_maximum_length": 7
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "dim_date",
+        "column_name": "load_batch_id",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 13,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "bpchar",
+        "data_type": "character",
+        "table_name": "dim_lease",
+        "column_name": "lease_key",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 1,
+        "numeric_precision": null,
+        "character_maximum_length": 16
+      },
+      {
+        "udt_name": "uuid",
+        "data_type": "uuid",
+        "table_name": "dim_lease",
+        "column_name": "lease_id",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 2,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "bpchar",
+        "data_type": "character",
+        "table_name": "dim_lease",
+        "column_name": "tenant_key",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 3,
+        "numeric_precision": null,
+        "character_maximum_length": 16
+      },
+      {
+        "udt_name": "uuid",
+        "data_type": "uuid",
+        "table_name": "dim_lease",
+        "column_name": "tenant_id",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 4,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "bpchar",
+        "data_type": "character",
+        "table_name": "dim_lease",
+        "column_name": "room_key",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 5,
+        "numeric_precision": null,
+        "character_maximum_length": 16
+      },
+      {
+        "udt_name": "uuid",
+        "data_type": "uuid",
+        "table_name": "dim_lease",
+        "column_name": "room_id",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 6,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "date",
+        "data_type": "date",
+        "table_name": "dim_lease",
+        "column_name": "move_in_date",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 7,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "date",
+        "data_type": "date",
+        "table_name": "dim_lease",
+        "column_name": "lease_end_date",
+        "is_nullable": "YES",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 8,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "varchar",
+        "data_type": "character varying",
+        "table_name": "dim_lease",
+        "column_name": "status",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 9,
+        "numeric_precision": null,
+        "character_maximum_length": 20
+      },
+      {
+        "udt_name": "bool",
+        "data_type": "boolean",
+        "table_name": "dim_lease",
+        "column_name": "is_active",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 10,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "bool",
+        "data_type": "boolean",
+        "table_name": "dim_lease",
+        "column_name": "is_open_ended",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 11,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "int4",
+        "data_type": "integer",
+        "table_name": "dim_lease",
+        "column_name": "lease_days",
+        "is_nullable": "YES",
+        "table_schema": "warehouse",
+        "numeric_scale": 0,
+        "column_default": null,
+        "ordinal_position": 12,
+        "numeric_precision": 32,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "bool",
+        "data_type": "boolean",
+        "table_name": "dim_lease",
+        "column_name": "code_unmapped",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 13,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "bool",
+        "data_type": "boolean",
+        "table_name": "dim_lease",
+        "column_name": "date_corrected",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 14,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "varchar",
+        "data_type": "character varying",
+        "table_name": "dim_lease",
+        "column_name": "transformation_run_id",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 15,
+        "numeric_precision": null,
+        "character_maximum_length": 64
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "dim_lease",
+        "column_name": "load_batch_id",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 16,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "bpchar",
+        "data_type": "character",
+        "table_name": "dim_room",
+        "column_name": "room_key",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 1,
+        "numeric_precision": null,
+        "character_maximum_length": 16
+      },
+      {
+        "udt_name": "uuid",
+        "data_type": "uuid",
+        "table_name": "dim_room",
+        "column_name": "room_id",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 2,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "bpchar",
+        "data_type": "character",
+        "table_name": "dim_room",
+        "column_name": "building_key",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 3,
+        "numeric_precision": null,
+        "character_maximum_length": 16
+      },
+      {
+        "udt_name": "uuid",
+        "data_type": "uuid",
+        "table_name": "dim_room",
+        "column_name": "building_id",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 4,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "varchar",
+        "data_type": "character varying",
+        "table_name": "dim_room",
+        "column_name": "room_number",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 5,
+        "numeric_precision": null,
+        "character_maximum_length": 50
+      },
+      {
+        "udt_name": "int2",
+        "data_type": "smallint",
+        "table_name": "dim_room",
+        "column_name": "floor",
+        "is_nullable": "YES",
+        "table_schema": "warehouse",
+        "numeric_scale": 0,
+        "column_default": null,
+        "ordinal_position": 6,
+        "numeric_precision": 16,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "varchar",
+        "data_type": "character varying",
+        "table_name": "dim_room",
+        "column_name": "status",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 7,
+        "numeric_precision": null,
+        "character_maximum_length": 20
+      },
+      {
+        "udt_name": "varchar",
+        "data_type": "character varying",
+        "table_name": "dim_room",
+        "column_name": "status_raw",
+        "is_nullable": "YES",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 8,
+        "numeric_precision": null,
+        "character_maximum_length": 50
+      },
+      {
+        "udt_name": "bool",
+        "data_type": "boolean",
+        "table_name": "dim_room",
+        "column_name": "code_unmapped",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 9,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "numeric",
+        "data_type": "numeric",
+        "table_name": "dim_room",
+        "column_name": "size_sqm",
+        "is_nullable": "YES",
+        "table_schema": "warehouse",
+        "numeric_scale": 2,
+        "column_default": null,
+        "ordinal_position": 10,
+        "numeric_precision": 6,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "bool",
+        "data_type": "boolean",
+        "table_name": "dim_room",
+        "column_name": "size_out_of_bounds",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 11,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "varchar",
+        "data_type": "character varying",
+        "table_name": "dim_room",
+        "column_name": "capacity",
+        "is_nullable": "YES",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 12,
+        "numeric_precision": null,
+        "character_maximum_length": 50
+      },
+      {
+        "udt_name": "numeric",
+        "data_type": "numeric",
+        "table_name": "dim_room",
+        "column_name": "monthly_rate",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": 2,
+        "column_default": null,
+        "ordinal_position": 13,
+        "numeric_precision": 12,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "dim_room",
+        "column_name": "description",
+        "is_nullable": "YES",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 14,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "bool",
+        "data_type": "boolean",
+        "table_name": "dim_room",
+        "column_name": "is_available",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 15,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "bool",
+        "data_type": "boolean",
+        "table_name": "dim_room",
+        "column_name": "is_occupied",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 16,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "bool",
+        "data_type": "boolean",
+        "table_name": "dim_room",
+        "column_name": "is_under_maintenance",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 17,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "timestamptz",
+        "data_type": "timestamp with time zone",
+        "table_name": "dim_room",
+        "column_name": "created_at",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 18,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "timestamptz",
+        "data_type": "timestamp with time zone",
+        "table_name": "dim_room",
+        "column_name": "updated_at",
+        "is_nullable": "YES",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 19,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "varchar",
+        "data_type": "character varying",
+        "table_name": "dim_room",
+        "column_name": "transformation_run_id",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 20,
+        "numeric_precision": null,
+        "character_maximum_length": 64
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "dim_room",
+        "column_name": "load_batch_id",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 21,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "bpchar",
+        "data_type": "character",
+        "table_name": "dim_tenant",
+        "column_name": "tenant_key",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 1,
+        "numeric_precision": null,
+        "character_maximum_length": 16
+      },
+      {
+        "udt_name": "uuid",
+        "data_type": "uuid",
+        "table_name": "dim_tenant",
+        "column_name": "tenant_id",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 2,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "varchar",
+        "data_type": "character varying",
+        "table_name": "dim_tenant",
+        "column_name": "full_name",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 3,
+        "numeric_precision": null,
+        "character_maximum_length": 200
+      },
+      {
+        "udt_name": "varchar",
+        "data_type": "character varying",
+        "table_name": "dim_tenant",
+        "column_name": "phone",
+        "is_nullable": "YES",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 4,
+        "numeric_precision": null,
+        "character_maximum_length": 50
+      },
+      {
+        "udt_name": "varchar",
+        "data_type": "character varying",
+        "table_name": "dim_tenant",
+        "column_name": "role",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 5,
+        "numeric_precision": null,
+        "character_maximum_length": 20
+      },
+      {
+        "udt_name": "bool",
+        "data_type": "boolean",
+        "table_name": "dim_tenant",
+        "column_name": "is_tenant",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 6,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "bool",
+        "data_type": "boolean",
+        "table_name": "dim_tenant",
+        "column_name": "is_staff",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 7,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "varchar",
+        "data_type": "character varying",
+        "table_name": "dim_tenant",
+        "column_name": "email",
+        "is_nullable": "YES",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 8,
+        "numeric_precision": null,
+        "character_maximum_length": 255
+      },
+      {
+        "udt_name": "uuid",
+        "data_type": "uuid",
+        "table_name": "dim_tenant",
+        "column_name": "current_assignment_id",
+        "is_nullable": "YES",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 9,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "numeric",
+        "data_type": "numeric",
+        "table_name": "dim_tenant",
+        "column_name": "monthly_rent",
+        "is_nullable": "YES",
+        "table_schema": "warehouse",
+        "numeric_scale": 2,
+        "column_default": null,
+        "ordinal_position": 10,
+        "numeric_precision": 12,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "date",
+        "data_type": "date",
+        "table_name": "dim_tenant",
+        "column_name": "move_in",
+        "is_nullable": "YES",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 11,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "date",
+        "data_type": "date",
+        "table_name": "dim_tenant",
+        "column_name": "lease_end",
+        "is_nullable": "YES",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 12,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "varchar",
+        "data_type": "character varying",
+        "table_name": "dim_tenant",
+        "column_name": "assignment_status",
+        "is_nullable": "YES",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 13,
+        "numeric_precision": null,
+        "character_maximum_length": 20
+      },
+      {
+        "udt_name": "varchar",
+        "data_type": "character varying",
+        "table_name": "dim_tenant",
+        "column_name": "emergency_name",
+        "is_nullable": "YES",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 14,
+        "numeric_precision": null,
+        "character_maximum_length": 200
+      },
+      {
+        "udt_name": "varchar",
+        "data_type": "character varying",
+        "table_name": "dim_tenant",
+        "column_name": "emergency_phone",
+        "is_nullable": "YES",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 15,
+        "numeric_precision": null,
+        "character_maximum_length": 50
+      },
+      {
+        "udt_name": "varchar",
+        "data_type": "character varying",
+        "table_name": "dim_tenant",
+        "column_name": "relationship",
+        "is_nullable": "YES",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 16,
+        "numeric_precision": null,
+        "character_maximum_length": 100
+      },
+      {
+        "udt_name": "varchar",
+        "data_type": "character varying",
+        "table_name": "dim_tenant",
+        "column_name": "identity_source",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 17,
+        "numeric_precision": null,
+        "character_maximum_length": 20
+      },
+      {
+        "udt_name": "bool",
+        "data_type": "boolean",
+        "table_name": "dim_tenant",
+        "column_name": "active_flag",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 18,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "int4",
+        "data_type": "integer",
+        "table_name": "dim_tenant",
+        "column_name": "outstanding_bill_count",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": 0,
+        "column_default": null,
+        "ordinal_position": 19,
+        "numeric_precision": 32,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "bool",
+        "data_type": "boolean",
+        "table_name": "dim_tenant",
+        "column_name": "is_flagged_tenant",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 20,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "bool",
+        "data_type": "boolean",
+        "table_name": "dim_tenant",
+        "column_name": "code_unmapped",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 21,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "timestamptz",
+        "data_type": "timestamp with time zone",
+        "table_name": "dim_tenant",
+        "column_name": "created_at",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 22,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "varchar",
+        "data_type": "character varying",
+        "table_name": "dim_tenant",
+        "column_name": "transformation_run_id",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 23,
+        "numeric_precision": null,
+        "character_maximum_length": 64
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "dim_tenant",
+        "column_name": "load_batch_id",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 24,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "bpchar",
+        "data_type": "character",
+        "table_name": "fact_assignment",
+        "column_name": "assignment_key",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 1,
+        "numeric_precision": null,
+        "character_maximum_length": 16
+      },
+      {
+        "udt_name": "uuid",
+        "data_type": "uuid",
+        "table_name": "fact_assignment",
+        "column_name": "assignment_id",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 2,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "bpchar",
+        "data_type": "character",
+        "table_name": "fact_assignment",
+        "column_name": "tenant_key",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 3,
+        "numeric_precision": null,
+        "character_maximum_length": 16
+      },
+      {
+        "udt_name": "bpchar",
+        "data_type": "character",
+        "table_name": "fact_assignment",
+        "column_name": "room_key",
+        "is_nullable": "YES",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 4,
+        "numeric_precision": null,
+        "character_maximum_length": 16
+      },
+      {
+        "udt_name": "numeric",
+        "data_type": "numeric",
+        "table_name": "fact_assignment",
+        "column_name": "monthly_rent",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": 2,
+        "column_default": null,
+        "ordinal_position": 5,
+        "numeric_precision": 12,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "date",
+        "data_type": "date",
+        "table_name": "fact_assignment",
+        "column_name": "move_in",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 6,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "date",
+        "data_type": "date",
+        "table_name": "fact_assignment",
+        "column_name": "lease_end",
+        "is_nullable": "YES",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 7,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "varchar",
+        "data_type": "character varying",
+        "table_name": "fact_assignment",
+        "column_name": "status",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 8,
+        "numeric_precision": null,
+        "character_maximum_length": 20
+      },
+      {
+        "udt_name": "bool",
+        "data_type": "boolean",
+        "table_name": "fact_assignment",
+        "column_name": "is_active",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 9,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "int4",
+        "data_type": "integer",
+        "table_name": "fact_assignment",
+        "column_name": "tenure_days",
+        "is_nullable": "YES",
+        "table_schema": "warehouse",
+        "numeric_scale": 0,
+        "column_default": null,
+        "ordinal_position": 10,
+        "numeric_precision": 32,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "bool",
+        "data_type": "boolean",
+        "table_name": "fact_assignment",
+        "column_name": "code_unmapped",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 11,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "bool",
+        "data_type": "boolean",
+        "table_name": "fact_assignment",
+        "column_name": "date_corrected",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 12,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "varchar",
+        "data_type": "character varying",
+        "table_name": "fact_assignment",
+        "column_name": "transformation_run_id",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 13,
+        "numeric_precision": null,
+        "character_maximum_length": 64
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "fact_assignment",
+        "column_name": "load_batch_id",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 14,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "bpchar",
+        "data_type": "character",
+        "table_name": "fact_billing",
+        "column_name": "bill_key",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 1,
+        "numeric_precision": null,
+        "character_maximum_length": 16
+      },
+      {
+        "udt_name": "uuid",
+        "data_type": "uuid",
+        "table_name": "fact_billing",
+        "column_name": "bill_id",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 2,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "bpchar",
+        "data_type": "character",
+        "table_name": "fact_billing",
+        "column_name": "lease_key",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 3,
+        "numeric_precision": null,
+        "character_maximum_length": 16
+      },
+      {
+        "udt_name": "bpchar",
+        "data_type": "character",
+        "table_name": "fact_billing",
+        "column_name": "tenant_key",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 4,
+        "numeric_precision": null,
+        "character_maximum_length": 16
+      },
+      {
+        "udt_name": "bpchar",
+        "data_type": "character",
+        "table_name": "fact_billing",
+        "column_name": "room_key",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 5,
+        "numeric_precision": null,
+        "character_maximum_length": 16
+      },
+      {
+        "udt_name": "varchar",
+        "data_type": "character varying",
+        "table_name": "fact_billing",
+        "column_name": "bill_type",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 6,
+        "numeric_precision": null,
+        "character_maximum_length": 20
+      },
+      {
+        "udt_name": "date",
+        "data_type": "date",
+        "table_name": "fact_billing",
+        "column_name": "billing_period_date",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 7,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "int2",
+        "data_type": "smallint",
+        "table_name": "fact_billing",
+        "column_name": "billing_year",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": 0,
+        "column_default": null,
+        "ordinal_position": 8,
+        "numeric_precision": 16,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "int2",
+        "data_type": "smallint",
+        "table_name": "fact_billing",
+        "column_name": "billing_month",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": 0,
+        "column_default": null,
+        "ordinal_position": 9,
+        "numeric_precision": 16,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "bpchar",
+        "data_type": "character",
+        "table_name": "fact_billing",
+        "column_name": "billing_period",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 10,
+        "numeric_precision": null,
+        "character_maximum_length": 7
+      },
+      {
+        "udt_name": "date",
+        "data_type": "date",
+        "table_name": "fact_billing",
+        "column_name": "due_date",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 11,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "numeric",
+        "data_type": "numeric",
+        "table_name": "fact_billing",
+        "column_name": "rent_amount",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": 2,
+        "column_default": null,
+        "ordinal_position": 12,
+        "numeric_precision": 12,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "numeric",
+        "data_type": "numeric",
+        "table_name": "fact_billing",
+        "column_name": "electricity_amount",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": 2,
+        "column_default": null,
+        "ordinal_position": 13,
+        "numeric_precision": 12,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "numeric",
+        "data_type": "numeric",
+        "table_name": "fact_billing",
+        "column_name": "water_amount",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": 2,
+        "column_default": null,
+        "ordinal_position": 14,
+        "numeric_precision": 12,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "numeric",
+        "data_type": "numeric",
+        "table_name": "fact_billing",
+        "column_name": "total_amount",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": 2,
+        "column_default": null,
+        "ordinal_position": 15,
+        "numeric_precision": 12,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "numeric",
+        "data_type": "numeric",
+        "table_name": "fact_billing",
+        "column_name": "amount_paid",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": 2,
+        "column_default": null,
+        "ordinal_position": 16,
+        "numeric_precision": 12,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "numeric",
+        "data_type": "numeric",
+        "table_name": "fact_billing",
+        "column_name": "balance",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": 2,
+        "column_default": null,
+        "ordinal_position": 17,
+        "numeric_precision": 12,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "varchar",
+        "data_type": "character varying",
+        "table_name": "fact_billing",
+        "column_name": "status",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 18,
+        "numeric_precision": null,
+        "character_maximum_length": 20
+      },
+      {
+        "udt_name": "bool",
+        "data_type": "boolean",
+        "table_name": "fact_billing",
+        "column_name": "status_recomputed",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 19,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "bool",
+        "data_type": "boolean",
+        "table_name": "fact_billing",
+        "column_name": "code_unmapped",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 20,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "bool",
+        "data_type": "boolean",
+        "table_name": "fact_billing",
+        "column_name": "is_rent",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 21,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "bool",
+        "data_type": "boolean",
+        "table_name": "fact_billing",
+        "column_name": "is_utility",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 22,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "int4",
+        "data_type": "integer",
+        "table_name": "fact_billing",
+        "column_name": "days_to_due",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": 0,
+        "column_default": null,
+        "ordinal_position": 23,
+        "numeric_precision": 32,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "int4",
+        "data_type": "integer",
+        "table_name": "fact_billing",
+        "column_name": "days_overdue",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": 0,
+        "column_default": null,
+        "ordinal_position": 24,
+        "numeric_precision": 32,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "bool",
+        "data_type": "boolean",
+        "table_name": "fact_billing",
+        "column_name": "is_overdue",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 25,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "varchar",
+        "data_type": "character varying",
+        "table_name": "fact_billing",
+        "column_name": "overdue_bucket",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 26,
+        "numeric_precision": null,
+        "character_maximum_length": 10
+      },
+      {
+        "udt_name": "bool",
+        "data_type": "boolean",
+        "table_name": "fact_billing",
+        "column_name": "is_revenue_recognized",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 27,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "bool",
+        "data_type": "boolean",
+        "table_name": "fact_billing",
+        "column_name": "due_date_corrected",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 28,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "numeric",
+        "data_type": "numeric",
+        "table_name": "fact_billing",
+        "column_name": "collection_rate",
+        "is_nullable": "YES",
+        "table_schema": "warehouse",
+        "numeric_scale": 4,
+        "column_default": null,
+        "ordinal_position": 29,
+        "numeric_precision": 9,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "varchar",
+        "data_type": "character varying",
+        "table_name": "fact_billing",
+        "column_name": "transformation_run_id",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 30,
+        "numeric_precision": null,
+        "character_maximum_length": 64
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "fact_billing",
+        "column_name": "load_batch_id",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 31,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "bpchar",
+        "data_type": "character",
+        "table_name": "fact_inquiry",
+        "column_name": "inquiry_key",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 1,
+        "numeric_precision": null,
+        "character_maximum_length": 16
+      },
+      {
+        "udt_name": "uuid",
+        "data_type": "uuid",
+        "table_name": "fact_inquiry",
+        "column_name": "inquiry_id",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 2,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "bpchar",
+        "data_type": "character",
+        "table_name": "fact_inquiry",
+        "column_name": "room_key",
+        "is_nullable": "YES",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 3,
+        "numeric_precision": null,
+        "character_maximum_length": 16
+      },
+      {
+        "udt_name": "varchar",
+        "data_type": "character varying",
+        "table_name": "fact_inquiry",
+        "column_name": "full_name",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 4,
+        "numeric_precision": null,
+        "character_maximum_length": 200
+      },
+      {
+        "udt_name": "varchar",
+        "data_type": "character varying",
+        "table_name": "fact_inquiry",
+        "column_name": "email",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 5,
+        "numeric_precision": null,
+        "character_maximum_length": 255
+      },
+      {
+        "udt_name": "varchar",
+        "data_type": "character varying",
+        "table_name": "fact_inquiry",
+        "column_name": "phone",
+        "is_nullable": "YES",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 6,
+        "numeric_precision": null,
+        "character_maximum_length": 50
+      },
+      {
+        "udt_name": "varchar",
+        "data_type": "character varying",
+        "table_name": "fact_inquiry",
+        "column_name": "preferred_room",
+        "is_nullable": "YES",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 7,
+        "numeric_precision": null,
+        "character_maximum_length": 100
+      },
+      {
+        "udt_name": "date",
+        "data_type": "date",
+        "table_name": "fact_inquiry",
+        "column_name": "move_in_date",
+        "is_nullable": "YES",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 8,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "varchar",
+        "data_type": "character varying",
+        "table_name": "fact_inquiry",
+        "column_name": "status",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 9,
+        "numeric_precision": null,
+        "character_maximum_length": 20
+      },
+      {
+        "udt_name": "bool",
+        "data_type": "boolean",
+        "table_name": "fact_inquiry",
+        "column_name": "code_unmapped",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 10,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "timestamptz",
+        "data_type": "timestamp with time zone",
+        "table_name": "fact_inquiry",
+        "column_name": "created_at",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 11,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "int4",
+        "data_type": "integer",
+        "table_name": "fact_inquiry",
+        "column_name": "age_days",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": 0,
+        "column_default": null,
+        "ordinal_position": 12,
+        "numeric_precision": 32,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "bool",
+        "data_type": "boolean",
+        "table_name": "fact_inquiry",
+        "column_name": "is_open",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 13,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "varchar",
+        "data_type": "character varying",
+        "table_name": "fact_inquiry",
+        "column_name": "transformation_run_id",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 14,
+        "numeric_precision": null,
+        "character_maximum_length": 64
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "fact_inquiry",
+        "column_name": "load_batch_id",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 15,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "bpchar",
+        "data_type": "character",
+        "table_name": "fact_notification",
+        "column_name": "notification_key",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 1,
+        "numeric_precision": null,
+        "character_maximum_length": 16
+      },
+      {
+        "udt_name": "uuid",
+        "data_type": "uuid",
+        "table_name": "fact_notification",
+        "column_name": "notification_id",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 2,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "bpchar",
+        "data_type": "character",
+        "table_name": "fact_notification",
+        "column_name": "tenant_key",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 3,
+        "numeric_precision": null,
+        "character_maximum_length": 16
+      },
+      {
+        "udt_name": "varchar",
+        "data_type": "character varying",
+        "table_name": "fact_notification",
+        "column_name": "kind",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 4,
+        "numeric_precision": null,
+        "character_maximum_length": 30
+      },
+      {
+        "udt_name": "bool",
+        "data_type": "boolean",
+        "table_name": "fact_notification",
+        "column_name": "code_unmapped",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 5,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "varchar",
+        "data_type": "character varying",
+        "table_name": "fact_notification",
+        "column_name": "title",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 6,
+        "numeric_precision": null,
+        "character_maximum_length": 300
+      },
+      {
+        "udt_name": "uuid",
+        "data_type": "uuid",
+        "table_name": "fact_notification",
+        "column_name": "source_id",
+        "is_nullable": "YES",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 7,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "bool",
+        "data_type": "boolean",
+        "table_name": "fact_notification",
+        "column_name": "is_read",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 8,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "timestamptz",
+        "data_type": "timestamp with time zone",
+        "table_name": "fact_notification",
+        "column_name": "created_at",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 9,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "varchar",
+        "data_type": "character varying",
+        "table_name": "fact_notification",
+        "column_name": "transformation_run_id",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 10,
+        "numeric_precision": null,
+        "character_maximum_length": 64
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "fact_notification",
+        "column_name": "load_batch_id",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 11,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "bpchar",
+        "data_type": "character",
+        "table_name": "fact_occupancy_event",
+        "column_name": "event_key",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 1,
+        "numeric_precision": null,
+        "character_maximum_length": 16
+      },
+      {
+        "udt_name": "uuid",
+        "data_type": "uuid",
+        "table_name": "fact_occupancy_event",
+        "column_name": "event_id",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 2,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "bpchar",
+        "data_type": "character",
+        "table_name": "fact_occupancy_event",
+        "column_name": "tenant_key",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 3,
+        "numeric_precision": null,
+        "character_maximum_length": 16
+      },
+      {
+        "udt_name": "bpchar",
+        "data_type": "character",
+        "table_name": "fact_occupancy_event",
+        "column_name": "previous_lease_key",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 4,
+        "numeric_precision": null,
+        "character_maximum_length": 16
+      },
+      {
+        "udt_name": "bpchar",
+        "data_type": "character",
+        "table_name": "fact_occupancy_event",
+        "column_name": "new_lease_key",
+        "is_nullable": "YES",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 5,
+        "numeric_precision": null,
+        "character_maximum_length": 16
+      },
+      {
+        "udt_name": "bpchar",
+        "data_type": "character",
+        "table_name": "fact_occupancy_event",
+        "column_name": "performed_by_tenant_key",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 6,
+        "numeric_precision": null,
+        "character_maximum_length": 16
+      },
+      {
+        "udt_name": "varchar",
+        "data_type": "character varying",
+        "table_name": "fact_occupancy_event",
+        "column_name": "event_type",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 7,
+        "numeric_precision": null,
+        "character_maximum_length": 20
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "fact_occupancy_event",
+        "column_name": "details",
+        "is_nullable": "YES",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 8,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "bool",
+        "data_type": "boolean",
+        "table_name": "fact_occupancy_event",
+        "column_name": "json_valid",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 9,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "timestamptz",
+        "data_type": "timestamp with time zone",
+        "table_name": "fact_occupancy_event",
+        "column_name": "created_at",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 10,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "varchar",
+        "data_type": "character varying",
+        "table_name": "fact_occupancy_event",
+        "column_name": "transformation_run_id",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 11,
+        "numeric_precision": null,
+        "character_maximum_length": 64
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "fact_occupancy_event",
+        "column_name": "load_batch_id",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 12,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "bpchar",
+        "data_type": "character",
+        "table_name": "fact_payment",
+        "column_name": "payment_key",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 1,
+        "numeric_precision": null,
+        "character_maximum_length": 16
+      },
+      {
+        "udt_name": "uuid",
+        "data_type": "uuid",
+        "table_name": "fact_payment",
+        "column_name": "payment_id",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 2,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "bpchar",
+        "data_type": "character",
+        "table_name": "fact_payment",
+        "column_name": "bill_key",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 3,
+        "numeric_precision": null,
+        "character_maximum_length": 16
+      },
+      {
+        "udt_name": "bpchar",
+        "data_type": "character",
+        "table_name": "fact_payment",
+        "column_name": "lease_key",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 4,
+        "numeric_precision": null,
+        "character_maximum_length": 16
+      },
+      {
+        "udt_name": "bpchar",
+        "data_type": "character",
+        "table_name": "fact_payment",
+        "column_name": "tenant_key",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 5,
+        "numeric_precision": null,
+        "character_maximum_length": 16
+      },
+      {
+        "udt_name": "numeric",
+        "data_type": "numeric",
+        "table_name": "fact_payment",
+        "column_name": "amount",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": 2,
+        "column_default": null,
+        "ordinal_position": 6,
+        "numeric_precision": 12,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "date",
+        "data_type": "date",
+        "table_name": "fact_payment",
+        "column_name": "payment_date",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 7,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "int2",
+        "data_type": "smallint",
+        "table_name": "fact_payment",
+        "column_name": "payment_year",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": 0,
+        "column_default": null,
+        "ordinal_position": 8,
+        "numeric_precision": 16,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "int2",
+        "data_type": "smallint",
+        "table_name": "fact_payment",
+        "column_name": "payment_month",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": 0,
+        "column_default": null,
+        "ordinal_position": 9,
+        "numeric_precision": 16,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "fact_payment",
+        "column_name": "reference_note",
+        "is_nullable": "YES",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 10,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "int4",
+        "data_type": "integer",
+        "table_name": "fact_payment",
+        "column_name": "payment_allocation_rank",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": 0,
+        "column_default": null,
+        "ordinal_position": 11,
+        "numeric_precision": 32,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "bool",
+        "data_type": "boolean",
+        "table_name": "fact_payment",
+        "column_name": "is_oldest_payment",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 12,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "int4",
+        "data_type": "integer",
+        "table_name": "fact_payment",
+        "column_name": "correction_count",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": 0,
+        "column_default": null,
+        "ordinal_position": 13,
+        "numeric_precision": 32,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "bool",
+        "data_type": "boolean",
+        "table_name": "fact_payment",
+        "column_name": "is_corrected",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 14,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "varchar",
+        "data_type": "character varying",
+        "table_name": "fact_payment",
+        "column_name": "transformation_run_id",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 15,
+        "numeric_precision": null,
+        "character_maximum_length": 64
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "fact_payment",
+        "column_name": "load_batch_id",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 16,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "bpchar",
+        "data_type": "character",
+        "table_name": "fact_payment_correction",
+        "column_name": "correction_key",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 1,
+        "numeric_precision": null,
+        "character_maximum_length": 16
+      },
+      {
+        "udt_name": "uuid",
+        "data_type": "uuid",
+        "table_name": "fact_payment_correction",
+        "column_name": "correction_id",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 2,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "bpchar",
+        "data_type": "character",
+        "table_name": "fact_payment_correction",
+        "column_name": "payment_key",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 3,
+        "numeric_precision": null,
+        "character_maximum_length": 16
+      },
+      {
+        "udt_name": "uuid",
+        "data_type": "uuid",
+        "table_name": "fact_payment_correction",
+        "column_name": "payment_id",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 4,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "uuid",
+        "data_type": "uuid",
+        "table_name": "fact_payment_correction",
+        "column_name": "corrected_by",
+        "is_nullable": "YES",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 5,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "fact_payment_correction",
+        "column_name": "reason",
+        "is_nullable": "YES",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 6,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "fact_payment_correction",
+        "column_name": "previous_values",
+        "is_nullable": "YES",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 7,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "fact_payment_correction",
+        "column_name": "corrected_values",
+        "is_nullable": "YES",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 8,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "bool",
+        "data_type": "boolean",
+        "table_name": "fact_payment_correction",
+        "column_name": "json_valid",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 9,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "timestamptz",
+        "data_type": "timestamp with time zone",
+        "table_name": "fact_payment_correction",
+        "column_name": "created_at",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 10,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "varchar",
+        "data_type": "character varying",
+        "table_name": "fact_payment_correction",
+        "column_name": "transformation_run_id",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 11,
+        "numeric_precision": null,
+        "character_maximum_length": 64
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "fact_payment_correction",
+        "column_name": "load_batch_id",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 12,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "bpchar",
+        "data_type": "character",
+        "table_name": "fact_tenant_request",
+        "column_name": "request_key",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 1,
+        "numeric_precision": null,
+        "character_maximum_length": 16
+      },
+      {
+        "udt_name": "uuid",
+        "data_type": "uuid",
+        "table_name": "fact_tenant_request",
+        "column_name": "request_id",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 2,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "bpchar",
+        "data_type": "character",
+        "table_name": "fact_tenant_request",
+        "column_name": "tenant_key",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 3,
+        "numeric_precision": null,
+        "character_maximum_length": 16
+      },
+      {
+        "udt_name": "bpchar",
+        "data_type": "character",
+        "table_name": "fact_tenant_request",
+        "column_name": "room_key",
+        "is_nullable": "YES",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 4,
+        "numeric_precision": null,
+        "character_maximum_length": 16
+      },
+      {
+        "udt_name": "varchar",
+        "data_type": "character varying",
+        "table_name": "fact_tenant_request",
+        "column_name": "kind",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 5,
+        "numeric_precision": null,
+        "character_maximum_length": 30
+      },
+      {
+        "udt_name": "varchar",
+        "data_type": "character varying",
+        "table_name": "fact_tenant_request",
+        "column_name": "subject",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 6,
+        "numeric_precision": null,
+        "character_maximum_length": 300
+      },
+      {
+        "udt_name": "varchar",
+        "data_type": "character varying",
+        "table_name": "fact_tenant_request",
+        "column_name": "priority",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 7,
+        "numeric_precision": null,
+        "character_maximum_length": 20
+      },
+      {
+        "udt_name": "varchar",
+        "data_type": "character varying",
+        "table_name": "fact_tenant_request",
+        "column_name": "status",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 8,
+        "numeric_precision": null,
+        "character_maximum_length": 20
+      },
+      {
+        "udt_name": "bool",
+        "data_type": "boolean",
+        "table_name": "fact_tenant_request",
+        "column_name": "code_unmapped",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 9,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "timestamptz",
+        "data_type": "timestamp with time zone",
+        "table_name": "fact_tenant_request",
+        "column_name": "created_at",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 10,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "timestamptz",
+        "data_type": "timestamp with time zone",
+        "table_name": "fact_tenant_request",
+        "column_name": "updated_at",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 11,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "int4",
+        "data_type": "integer",
+        "table_name": "fact_tenant_request",
+        "column_name": "resolution_days",
+        "is_nullable": "YES",
+        "table_schema": "warehouse",
+        "numeric_scale": 0,
+        "column_default": null,
+        "ordinal_position": 12,
+        "numeric_precision": 32,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "bool",
+        "data_type": "boolean",
+        "table_name": "fact_tenant_request",
+        "column_name": "is_open",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 13,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "varchar",
+        "data_type": "character varying",
+        "table_name": "fact_tenant_request",
+        "column_name": "transformation_run_id",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 14,
+        "numeric_precision": null,
+        "character_maximum_length": 64
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "fact_tenant_request",
+        "column_name": "load_batch_id",
+        "is_nullable": "NO",
+        "table_schema": "warehouse",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 15,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "attempts",
+        "column_name": "run_id",
+        "is_nullable": "NO",
+        "table_schema": "warehouse_meta",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 1,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "attempts",
+        "column_name": "batch_id",
+        "is_nullable": "YES",
+        "table_schema": "warehouse_meta",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 2,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "attempts",
+        "column_name": "status",
+        "is_nullable": "NO",
+        "table_schema": "warehouse_meta",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 3,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "timestamptz",
+        "data_type": "timestamp with time zone",
+        "table_name": "attempts",
+        "column_name": "recorded_at",
+        "is_nullable": "NO",
+        "table_schema": "warehouse_meta",
+        "numeric_scale": null,
+        "column_default": "now()",
+        "ordinal_position": 4,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "jsonb",
+        "data_type": "jsonb",
+        "table_name": "attempts",
+        "column_name": "report",
+        "is_nullable": "NO",
+        "table_schema": "warehouse_meta",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 5,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "batches",
+        "column_name": "batch_id",
+        "is_nullable": "NO",
+        "table_schema": "warehouse_meta",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 1,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "batches",
+        "column_name": "transformation_run_id",
+        "is_nullable": "NO",
+        "table_schema": "warehouse_meta",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 2,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "batches",
+        "column_name": "extraction_run_id",
+        "is_nullable": "NO",
+        "table_schema": "warehouse_meta",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 3,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "date",
+        "data_type": "date",
+        "table_name": "batches",
+        "column_name": "processing_period",
+        "is_nullable": "NO",
+        "table_schema": "warehouse_meta",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 4,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "timestamptz",
+        "data_type": "timestamp with time zone",
+        "table_name": "batches",
+        "column_name": "snapshot_end",
+        "is_nullable": "NO",
+        "table_schema": "warehouse_meta",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 5,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "batches",
+        "column_name": "fingerprint",
+        "is_nullable": "NO",
+        "table_schema": "warehouse_meta",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 6,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "batches",
+        "column_name": "run_id",
+        "is_nullable": "NO",
+        "table_schema": "warehouse_meta",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 7,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "timestamptz",
+        "data_type": "timestamp with time zone",
+        "table_name": "batches",
+        "column_name": "completed_at",
+        "is_nullable": "NO",
+        "table_schema": "warehouse_meta",
+        "numeric_scale": null,
+        "column_default": "now()",
+        "ordinal_position": 8,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "jsonb",
+        "data_type": "jsonb",
+        "table_name": "batches",
+        "column_name": "report",
+        "is_nullable": "NO",
+        "table_schema": "warehouse_meta",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 9,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "bool",
+        "data_type": "boolean",
+        "table_name": "current_batch",
+        "column_name": "singleton",
+        "is_nullable": "NO",
+        "table_schema": "warehouse_meta",
+        "numeric_scale": null,
+        "column_default": "true",
+        "ordinal_position": 1,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "current_batch",
+        "column_name": "batch_id",
+        "is_nullable": "NO",
+        "table_schema": "warehouse_meta",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 2,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "schema_contract",
+        "column_name": "version",
+        "is_nullable": "NO",
+        "table_schema": "warehouse_meta",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 1,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "schema_contract",
+        "column_name": "fingerprint",
+        "is_nullable": "NO",
+        "table_schema": "warehouse_meta",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 2,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      },
+      {
+        "udt_name": "jsonb",
+        "data_type": "jsonb",
+        "table_name": "schema_contract",
+        "column_name": "catalog",
+        "is_nullable": "NO",
+        "table_schema": "warehouse_meta",
+        "numeric_scale": null,
+        "column_default": null,
+        "ordinal_position": 3,
+        "numeric_precision": null,
+        "character_maximum_length": null
+      }
+    ],
+    "indexes": [
+      {
+        "indexdef": "CREATE UNIQUE INDEX dim_building_building_id_key ON warehouse.dim_building USING btree (building_id)",
+        "indexname": "dim_building_building_id_key",
+        "tablename": "dim_building",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE INDEX dim_building_load_batch_id_idx ON warehouse.dim_building USING btree (load_batch_id)",
+        "indexname": "dim_building_load_batch_id_idx",
+        "tablename": "dim_building",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX dim_building_pkey ON warehouse.dim_building USING btree (building_key)",
+        "indexname": "dim_building_pkey",
+        "tablename": "dim_building",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX dim_date_date_key ON warehouse.dim_date USING btree (date)",
+        "indexname": "dim_date_date_key",
+        "tablename": "dim_date",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE INDEX dim_date_load_batch_id_idx ON warehouse.dim_date USING btree (load_batch_id)",
+        "indexname": "dim_date_load_batch_id_idx",
+        "tablename": "dim_date",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX dim_date_pkey ON warehouse.dim_date USING btree (date_key)",
+        "indexname": "dim_date_pkey",
+        "tablename": "dim_date",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX dim_lease_lease_id_key ON warehouse.dim_lease USING btree (lease_id)",
+        "indexname": "dim_lease_lease_id_key",
+        "tablename": "dim_lease",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE INDEX dim_lease_load_batch_id_idx ON warehouse.dim_lease USING btree (load_batch_id)",
+        "indexname": "dim_lease_load_batch_id_idx",
+        "tablename": "dim_lease",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX dim_lease_pkey ON warehouse.dim_lease USING btree (lease_key)",
+        "indexname": "dim_lease_pkey",
+        "tablename": "dim_lease",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE INDEX dim_lease_room_key_idx ON warehouse.dim_lease USING btree (room_key)",
+        "indexname": "dim_lease_room_key_idx",
+        "tablename": "dim_lease",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE INDEX dim_lease_tenant_key_idx ON warehouse.dim_lease USING btree (tenant_key)",
+        "indexname": "dim_lease_tenant_key_idx",
+        "tablename": "dim_lease",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE INDEX dim_room_building_key_idx ON warehouse.dim_room USING btree (building_key)",
+        "indexname": "dim_room_building_key_idx",
+        "tablename": "dim_room",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE INDEX dim_room_load_batch_id_idx ON warehouse.dim_room USING btree (load_batch_id)",
+        "indexname": "dim_room_load_batch_id_idx",
+        "tablename": "dim_room",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX dim_room_pkey ON warehouse.dim_room USING btree (room_key)",
+        "indexname": "dim_room_pkey",
+        "tablename": "dim_room",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX dim_room_room_id_key ON warehouse.dim_room USING btree (room_id)",
+        "indexname": "dim_room_room_id_key",
+        "tablename": "dim_room",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE INDEX dim_tenant_load_batch_id_idx ON warehouse.dim_tenant USING btree (load_batch_id)",
+        "indexname": "dim_tenant_load_batch_id_idx",
+        "tablename": "dim_tenant",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX dim_tenant_pkey ON warehouse.dim_tenant USING btree (tenant_key)",
+        "indexname": "dim_tenant_pkey",
+        "tablename": "dim_tenant",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX dim_tenant_tenant_id_key ON warehouse.dim_tenant USING btree (tenant_id)",
+        "indexname": "dim_tenant_tenant_id_key",
+        "tablename": "dim_tenant",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX fact_assignment_assignment_id_key ON warehouse.fact_assignment USING btree (assignment_id)",
+        "indexname": "fact_assignment_assignment_id_key",
+        "tablename": "fact_assignment",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE INDEX fact_assignment_load_batch_id_idx ON warehouse.fact_assignment USING btree (load_batch_id)",
+        "indexname": "fact_assignment_load_batch_id_idx",
+        "tablename": "fact_assignment",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX fact_assignment_pkey ON warehouse.fact_assignment USING btree (assignment_key)",
+        "indexname": "fact_assignment_pkey",
+        "tablename": "fact_assignment",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE INDEX fact_assignment_room_key_idx ON warehouse.fact_assignment USING btree (room_key)",
+        "indexname": "fact_assignment_room_key_idx",
+        "tablename": "fact_assignment",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE INDEX fact_assignment_tenant_key_idx ON warehouse.fact_assignment USING btree (tenant_key)",
+        "indexname": "fact_assignment_tenant_key_idx",
+        "tablename": "fact_assignment",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX fact_billing_bill_id_key ON warehouse.fact_billing USING btree (bill_id)",
+        "indexname": "fact_billing_bill_id_key",
+        "tablename": "fact_billing",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE INDEX fact_billing_billing_period_idx ON warehouse.fact_billing USING btree (billing_period)",
+        "indexname": "fact_billing_billing_period_idx",
+        "tablename": "fact_billing",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE INDEX fact_billing_lease_key_idx ON warehouse.fact_billing USING btree (lease_key)",
+        "indexname": "fact_billing_lease_key_idx",
+        "tablename": "fact_billing",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE INDEX fact_billing_load_batch_id_idx ON warehouse.fact_billing USING btree (load_batch_id)",
+        "indexname": "fact_billing_load_batch_id_idx",
+        "tablename": "fact_billing",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX fact_billing_pkey ON warehouse.fact_billing USING btree (bill_key)",
+        "indexname": "fact_billing_pkey",
+        "tablename": "fact_billing",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE INDEX fact_billing_room_key_idx ON warehouse.fact_billing USING btree (room_key)",
+        "indexname": "fact_billing_room_key_idx",
+        "tablename": "fact_billing",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE INDEX fact_billing_tenant_key_idx ON warehouse.fact_billing USING btree (tenant_key)",
+        "indexname": "fact_billing_tenant_key_idx",
+        "tablename": "fact_billing",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE INDEX fact_billing_tenant_key_status_due_date_idx ON warehouse.fact_billing USING btree (tenant_key, status, due_date)",
+        "indexname": "fact_billing_tenant_key_status_due_date_idx",
+        "tablename": "fact_billing",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX fact_inquiry_inquiry_id_key ON warehouse.fact_inquiry USING btree (inquiry_id)",
+        "indexname": "fact_inquiry_inquiry_id_key",
+        "tablename": "fact_inquiry",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE INDEX fact_inquiry_load_batch_id_idx ON warehouse.fact_inquiry USING btree (load_batch_id)",
+        "indexname": "fact_inquiry_load_batch_id_idx",
+        "tablename": "fact_inquiry",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX fact_inquiry_pkey ON warehouse.fact_inquiry USING btree (inquiry_key)",
+        "indexname": "fact_inquiry_pkey",
+        "tablename": "fact_inquiry",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE INDEX fact_inquiry_room_key_idx ON warehouse.fact_inquiry USING btree (room_key)",
+        "indexname": "fact_inquiry_room_key_idx",
+        "tablename": "fact_inquiry",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE INDEX fact_notification_load_batch_id_idx ON warehouse.fact_notification USING btree (load_batch_id)",
+        "indexname": "fact_notification_load_batch_id_idx",
+        "tablename": "fact_notification",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX fact_notification_notification_id_key ON warehouse.fact_notification USING btree (notification_id)",
+        "indexname": "fact_notification_notification_id_key",
+        "tablename": "fact_notification",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX fact_notification_pkey ON warehouse.fact_notification USING btree (notification_key)",
+        "indexname": "fact_notification_pkey",
+        "tablename": "fact_notification",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE INDEX fact_notification_tenant_key_idx ON warehouse.fact_notification USING btree (tenant_key)",
+        "indexname": "fact_notification_tenant_key_idx",
+        "tablename": "fact_notification",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX fact_occupancy_event_event_id_key ON warehouse.fact_occupancy_event USING btree (event_id)",
+        "indexname": "fact_occupancy_event_event_id_key",
+        "tablename": "fact_occupancy_event",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE INDEX fact_occupancy_event_load_batch_id_idx ON warehouse.fact_occupancy_event USING btree (load_batch_id)",
+        "indexname": "fact_occupancy_event_load_batch_id_idx",
+        "tablename": "fact_occupancy_event",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE INDEX fact_occupancy_event_new_lease_key_idx ON warehouse.fact_occupancy_event USING btree (new_lease_key)",
+        "indexname": "fact_occupancy_event_new_lease_key_idx",
+        "tablename": "fact_occupancy_event",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE INDEX fact_occupancy_event_performed_by_tenant_key_idx ON warehouse.fact_occupancy_event USING btree (performed_by_tenant_key)",
+        "indexname": "fact_occupancy_event_performed_by_tenant_key_idx",
+        "tablename": "fact_occupancy_event",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX fact_occupancy_event_pkey ON warehouse.fact_occupancy_event USING btree (event_key)",
+        "indexname": "fact_occupancy_event_pkey",
+        "tablename": "fact_occupancy_event",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE INDEX fact_occupancy_event_previous_lease_key_idx ON warehouse.fact_occupancy_event USING btree (previous_lease_key)",
+        "indexname": "fact_occupancy_event_previous_lease_key_idx",
+        "tablename": "fact_occupancy_event",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE INDEX fact_occupancy_event_tenant_key_idx ON warehouse.fact_occupancy_event USING btree (tenant_key)",
+        "indexname": "fact_occupancy_event_tenant_key_idx",
+        "tablename": "fact_occupancy_event",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE INDEX fact_payment_bill_key_idx ON warehouse.fact_payment USING btree (bill_key)",
+        "indexname": "fact_payment_bill_key_idx",
+        "tablename": "fact_payment",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE INDEX fact_payment_bill_key_payment_date_idx ON warehouse.fact_payment USING btree (bill_key, payment_date)",
+        "indexname": "fact_payment_bill_key_payment_date_idx",
+        "tablename": "fact_payment",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE INDEX fact_payment_lease_key_idx ON warehouse.fact_payment USING btree (lease_key)",
+        "indexname": "fact_payment_lease_key_idx",
+        "tablename": "fact_payment",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE INDEX fact_payment_load_batch_id_idx ON warehouse.fact_payment USING btree (load_batch_id)",
+        "indexname": "fact_payment_load_batch_id_idx",
+        "tablename": "fact_payment",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX fact_payment_payment_id_key ON warehouse.fact_payment USING btree (payment_id)",
+        "indexname": "fact_payment_payment_id_key",
+        "tablename": "fact_payment",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX fact_payment_pkey ON warehouse.fact_payment USING btree (payment_key)",
+        "indexname": "fact_payment_pkey",
+        "tablename": "fact_payment",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE INDEX fact_payment_tenant_key_idx ON warehouse.fact_payment USING btree (tenant_key)",
+        "indexname": "fact_payment_tenant_key_idx",
+        "tablename": "fact_payment",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX fact_payment_correction_correction_id_key ON warehouse.fact_payment_correction USING btree (correction_id)",
+        "indexname": "fact_payment_correction_correction_id_key",
+        "tablename": "fact_payment_correction",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE INDEX fact_payment_correction_load_batch_id_idx ON warehouse.fact_payment_correction USING btree (load_batch_id)",
+        "indexname": "fact_payment_correction_load_batch_id_idx",
+        "tablename": "fact_payment_correction",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE INDEX fact_payment_correction_payment_key_idx ON warehouse.fact_payment_correction USING btree (payment_key)",
+        "indexname": "fact_payment_correction_payment_key_idx",
+        "tablename": "fact_payment_correction",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX fact_payment_correction_pkey ON warehouse.fact_payment_correction USING btree (correction_key)",
+        "indexname": "fact_payment_correction_pkey",
+        "tablename": "fact_payment_correction",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE INDEX fact_tenant_request_load_batch_id_idx ON warehouse.fact_tenant_request USING btree (load_batch_id)",
+        "indexname": "fact_tenant_request_load_batch_id_idx",
+        "tablename": "fact_tenant_request",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX fact_tenant_request_pkey ON warehouse.fact_tenant_request USING btree (request_key)",
+        "indexname": "fact_tenant_request_pkey",
+        "tablename": "fact_tenant_request",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX fact_tenant_request_request_id_key ON warehouse.fact_tenant_request USING btree (request_id)",
+        "indexname": "fact_tenant_request_request_id_key",
+        "tablename": "fact_tenant_request",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE INDEX fact_tenant_request_room_key_idx ON warehouse.fact_tenant_request USING btree (room_key)",
+        "indexname": "fact_tenant_request_room_key_idx",
+        "tablename": "fact_tenant_request",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE INDEX fact_tenant_request_tenant_key_idx ON warehouse.fact_tenant_request USING btree (tenant_key)",
+        "indexname": "fact_tenant_request_tenant_key_idx",
+        "tablename": "fact_tenant_request",
+        "schemaname": "warehouse"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX attempts_pkey ON warehouse_meta.attempts USING btree (run_id)",
+        "indexname": "attempts_pkey",
+        "tablename": "attempts",
+        "schemaname": "warehouse_meta"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX batches_pkey ON warehouse_meta.batches USING btree (batch_id)",
+        "indexname": "batches_pkey",
+        "tablename": "batches",
+        "schemaname": "warehouse_meta"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX batches_transformation_run_id_key ON warehouse_meta.batches USING btree (transformation_run_id)",
+        "indexname": "batches_transformation_run_id_key",
+        "tablename": "batches",
+        "schemaname": "warehouse_meta"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX current_batch_pkey ON warehouse_meta.current_batch USING btree (singleton)",
+        "indexname": "current_batch_pkey",
+        "tablename": "current_batch",
+        "schemaname": "warehouse_meta"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX schema_contract_pkey ON warehouse_meta.schema_contract USING btree (version)",
+        "indexname": "schema_contract_pkey",
+        "tablename": "schema_contract",
+        "schemaname": "warehouse_meta"
+      }
+    ],
+    "constraints": [
+      {
+        "name": "dim_building_building_id_key",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "UNIQUE (building_id)",
+        "table_name": "dim_building"
+      },
+      {
+        "name": "dim_building_check_0",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK ((vacancy_gap >= (0)::numeric))",
+        "table_name": "dim_building"
+      },
+      {
+        "name": "dim_building_check_1",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK ((building_key ~ '^[0-9a-f]{16}$'::text))",
+        "table_name": "dim_building"
+      },
+      {
+        "name": "dim_building_load_batch_id_fkey",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "FOREIGN KEY (load_batch_id) REFERENCES warehouse_meta.batches(batch_id) DEFERRABLE INITIALLY DEFERRED",
+        "table_name": "dim_building"
+      },
+      {
+        "name": "dim_building_pkey",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "PRIMARY KEY (building_key)",
+        "table_name": "dim_building"
+      },
+      {
+        "name": "dim_date_check_0",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK ((date_key ~ '^[0-9]{8}$'::text))",
+        "table_name": "dim_date"
+      },
+      {
+        "name": "dim_date_check_1",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK (((quarter >= 1) AND (quarter <= 4)))",
+        "table_name": "dim_date"
+      },
+      {
+        "name": "dim_date_check_2",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK (((month >= 1) AND (month <= 12)))",
+        "table_name": "dim_date"
+      },
+      {
+        "name": "dim_date_check_3",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK (((day_of_week >= 1) AND (day_of_week <= 7)))",
+        "table_name": "dim_date"
+      },
+      {
+        "name": "dim_date_date_key",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "UNIQUE (date)",
+        "table_name": "dim_date"
+      },
+      {
+        "name": "dim_date_load_batch_id_fkey",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "FOREIGN KEY (load_batch_id) REFERENCES warehouse_meta.batches(batch_id) DEFERRABLE INITIALLY DEFERRED",
+        "table_name": "dim_date"
+      },
+      {
+        "name": "dim_date_pkey",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "PRIMARY KEY (date_key)",
+        "table_name": "dim_date"
+      },
+      {
+        "name": "dim_lease_check_0",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK (((status)::text = ANY ((ARRAY['ACTIVE'::character varying, 'ENDED'::character varying, 'UNKNOWN'::character varying])::text[])))",
+        "table_name": "dim_lease"
+      },
+      {
+        "name": "dim_lease_check_1",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK (((lease_end_date IS NULL) OR (lease_end_date >= move_in_date)))",
+        "table_name": "dim_lease"
+      },
+      {
+        "name": "dim_lease_check_2",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK ((lease_key ~ '^[0-9a-f]{16}$'::text))",
+        "table_name": "dim_lease"
+      },
+      {
+        "name": "dim_lease_check_3",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK ((tenant_key ~ '^[0-9a-f]{16}$'::text))",
+        "table_name": "dim_lease"
+      },
+      {
+        "name": "dim_lease_check_4",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK ((room_key ~ '^[0-9a-f]{16}$'::text))",
+        "table_name": "dim_lease"
+      },
+      {
+        "name": "dim_lease_lease_id_key",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "UNIQUE (lease_id)",
+        "table_name": "dim_lease"
+      },
+      {
+        "name": "dim_lease_load_batch_id_fkey",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "FOREIGN KEY (load_batch_id) REFERENCES warehouse_meta.batches(batch_id) DEFERRABLE INITIALLY DEFERRED",
+        "table_name": "dim_lease"
+      },
+      {
+        "name": "dim_lease_pkey",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "PRIMARY KEY (lease_key)",
+        "table_name": "dim_lease"
+      },
+      {
+        "name": "dim_lease_room_key_fkey",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "FOREIGN KEY (room_key) REFERENCES warehouse.dim_room(room_key)",
+        "table_name": "dim_lease"
+      },
+      {
+        "name": "dim_lease_tenant_key_fkey",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "FOREIGN KEY (tenant_key) REFERENCES warehouse.dim_tenant(tenant_key)",
+        "table_name": "dim_lease"
+      },
+      {
+        "name": "dim_room_building_key_fkey",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "FOREIGN KEY (building_key) REFERENCES warehouse.dim_building(building_key)",
+        "table_name": "dim_room"
+      },
+      {
+        "name": "dim_room_check_0",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK ((monthly_rate >= (0)::numeric))",
+        "table_name": "dim_room"
+      },
+      {
+        "name": "dim_room_check_1",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK (((status)::text = ANY ((ARRAY['AVAILABLE'::character varying, 'MAINTENANCE'::character varying, 'OCCUPIED'::character varying, 'RESERVED'::character varying, 'UNKNOWN'::character varying])::text[])))",
+        "table_name": "dim_room"
+      },
+      {
+        "name": "dim_room_check_2",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK ((room_key ~ '^[0-9a-f]{16}$'::text))",
+        "table_name": "dim_room"
+      },
+      {
+        "name": "dim_room_check_3",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK ((building_key ~ '^[0-9a-f]{16}$'::text))",
+        "table_name": "dim_room"
+      },
+      {
+        "name": "dim_room_load_batch_id_fkey",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "FOREIGN KEY (load_batch_id) REFERENCES warehouse_meta.batches(batch_id) DEFERRABLE INITIALLY DEFERRED",
+        "table_name": "dim_room"
+      },
+      {
+        "name": "dim_room_pkey",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "PRIMARY KEY (room_key)",
+        "table_name": "dim_room"
+      },
+      {
+        "name": "dim_room_room_id_key",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "UNIQUE (room_id)",
+        "table_name": "dim_room"
+      },
+      {
+        "name": "dim_tenant_check_0",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK (((role)::text = ANY ((ARRAY['ADMIN'::character varying, 'TENANT'::character varying, 'UNKNOWN'::character varying])::text[])))",
+        "table_name": "dim_tenant"
+      },
+      {
+        "name": "dim_tenant_check_1",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK ((tenant_key ~ '^[0-9a-f]{16}$'::text))",
+        "table_name": "dim_tenant"
+      },
+      {
+        "name": "dim_tenant_load_batch_id_fkey",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "FOREIGN KEY (load_batch_id) REFERENCES warehouse_meta.batches(batch_id) DEFERRABLE INITIALLY DEFERRED",
+        "table_name": "dim_tenant"
+      },
+      {
+        "name": "dim_tenant_pkey",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "PRIMARY KEY (tenant_key)",
+        "table_name": "dim_tenant"
+      },
+      {
+        "name": "dim_tenant_tenant_id_key",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "UNIQUE (tenant_id)",
+        "table_name": "dim_tenant"
+      },
+      {
+        "name": "fact_assignment_assignment_id_key",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "UNIQUE (assignment_id)",
+        "table_name": "fact_assignment"
+      },
+      {
+        "name": "fact_assignment_check_0",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK ((monthly_rent >= (0)::numeric))",
+        "table_name": "fact_assignment"
+      },
+      {
+        "name": "fact_assignment_check_1",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK (((status)::text = ANY ((ARRAY['ACTIVE'::character varying, 'ENDED'::character varying, 'UNKNOWN'::character varying])::text[])))",
+        "table_name": "fact_assignment"
+      },
+      {
+        "name": "fact_assignment_check_2",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK (((lease_end IS NULL) OR (lease_end >= move_in)))",
+        "table_name": "fact_assignment"
+      },
+      {
+        "name": "fact_assignment_check_3",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK ((((status)::text <> 'ACTIVE'::text) OR (room_key IS NOT NULL)))",
+        "table_name": "fact_assignment"
+      },
+      {
+        "name": "fact_assignment_check_4",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK ((((status)::text <> 'ENDED'::text) OR (room_key IS NULL)))",
+        "table_name": "fact_assignment"
+      },
+      {
+        "name": "fact_assignment_check_5",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK ((assignment_key ~ '^[0-9a-f]{16}$'::text))",
+        "table_name": "fact_assignment"
+      },
+      {
+        "name": "fact_assignment_check_6",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK ((tenant_key ~ '^[0-9a-f]{16}$'::text))",
+        "table_name": "fact_assignment"
+      },
+      {
+        "name": "fact_assignment_check_7",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK ((room_key ~ '^[0-9a-f]{16}$'::text))",
+        "table_name": "fact_assignment"
+      },
+      {
+        "name": "fact_assignment_load_batch_id_fkey",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "FOREIGN KEY (load_batch_id) REFERENCES warehouse_meta.batches(batch_id) DEFERRABLE INITIALLY DEFERRED",
+        "table_name": "fact_assignment"
+      },
+      {
+        "name": "fact_assignment_pkey",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "PRIMARY KEY (assignment_key)",
+        "table_name": "fact_assignment"
+      },
+      {
+        "name": "fact_assignment_room_key_fkey",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "FOREIGN KEY (room_key) REFERENCES warehouse.dim_room(room_key)",
+        "table_name": "fact_assignment"
+      },
+      {
+        "name": "fact_assignment_tenant_key_fkey",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "FOREIGN KEY (tenant_key) REFERENCES warehouse.dim_tenant(tenant_key)",
+        "table_name": "fact_assignment"
+      },
+      {
+        "name": "fact_billing_bill_id_key",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "UNIQUE (bill_id)",
+        "table_name": "fact_billing"
+      },
+      {
+        "name": "fact_billing_check_0",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK ((rent_amount >= (0)::numeric))",
+        "table_name": "fact_billing"
+      },
+      {
+        "name": "fact_billing_check_1",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK ((electricity_amount >= (0)::numeric))",
+        "table_name": "fact_billing"
+      },
+      {
+        "name": "fact_billing_check_10",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK ((billing_period ~ '^[0-9]{4}-[0-9]{2}$'::text))",
+        "table_name": "fact_billing"
+      },
+      {
+        "name": "fact_billing_check_11",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK ((bill_key ~ '^[0-9a-f]{16}$'::text))",
+        "table_name": "fact_billing"
+      },
+      {
+        "name": "fact_billing_check_12",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK ((lease_key ~ '^[0-9a-f]{16}$'::text))",
+        "table_name": "fact_billing"
+      },
+      {
+        "name": "fact_billing_check_13",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK ((tenant_key ~ '^[0-9a-f]{16}$'::text))",
+        "table_name": "fact_billing"
+      },
+      {
+        "name": "fact_billing_check_14",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK ((room_key ~ '^[0-9a-f]{16}$'::text))",
+        "table_name": "fact_billing"
+      },
+      {
+        "name": "fact_billing_check_2",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK ((water_amount >= (0)::numeric))",
+        "table_name": "fact_billing"
+      },
+      {
+        "name": "fact_billing_check_3",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK ((total_amount >= (0)::numeric))",
+        "table_name": "fact_billing"
+      },
+      {
+        "name": "fact_billing_check_4",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK ((amount_paid >= (0)::numeric))",
+        "table_name": "fact_billing"
+      },
+      {
+        "name": "fact_billing_check_5",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK ((balance >= (0)::numeric))",
+        "table_name": "fact_billing"
+      },
+      {
+        "name": "fact_billing_check_6",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK (((bill_type)::text = ANY ((ARRAY['RENT'::character varying, 'UNKNOWN'::character varying, 'UTILITY'::character varying])::text[])))",
+        "table_name": "fact_billing"
+      },
+      {
+        "name": "fact_billing_check_7",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK (((status)::text = ANY ((ARRAY['PAID'::character varying, 'PARTIAL'::character varying, 'PENDING'::character varying, 'UNKNOWN'::character varying])::text[])))",
+        "table_name": "fact_billing"
+      },
+      {
+        "name": "fact_billing_check_8",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK (((overdue_bucket)::text = ANY ((ARRAY['CURRENT'::character varying, 'D1_30'::character varying, 'D31_60'::character varying, 'D61_90'::character varying, 'D90_PLUS'::character varying])::text[])))",
+        "table_name": "fact_billing"
+      },
+      {
+        "name": "fact_billing_check_9",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK ((due_date >= billing_period_date))",
+        "table_name": "fact_billing"
+      },
+      {
+        "name": "fact_billing_lease_key_fkey",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "FOREIGN KEY (lease_key) REFERENCES warehouse.dim_lease(lease_key)",
+        "table_name": "fact_billing"
+      },
+      {
+        "name": "fact_billing_load_batch_id_fkey",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "FOREIGN KEY (load_batch_id) REFERENCES warehouse_meta.batches(batch_id) DEFERRABLE INITIALLY DEFERRED",
+        "table_name": "fact_billing"
+      },
+      {
+        "name": "fact_billing_pkey",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "PRIMARY KEY (bill_key)",
+        "table_name": "fact_billing"
+      },
+      {
+        "name": "fact_billing_room_key_fkey",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "FOREIGN KEY (room_key) REFERENCES warehouse.dim_room(room_key)",
+        "table_name": "fact_billing"
+      },
+      {
+        "name": "fact_billing_tenant_key_fkey",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "FOREIGN KEY (tenant_key) REFERENCES warehouse.dim_tenant(tenant_key)",
+        "table_name": "fact_billing"
+      },
+      {
+        "name": "fact_inquiry_check_0",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK (((status)::text = ANY ((ARRAY['CONTACTED'::character varying, 'NEW'::character varying, 'RESOLVED'::character varying, 'UNKNOWN'::character varying])::text[])))",
+        "table_name": "fact_inquiry"
+      },
+      {
+        "name": "fact_inquiry_check_1",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK ((inquiry_key ~ '^[0-9a-f]{16}$'::text))",
+        "table_name": "fact_inquiry"
+      },
+      {
+        "name": "fact_inquiry_check_2",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK ((room_key ~ '^[0-9a-f]{16}$'::text))",
+        "table_name": "fact_inquiry"
+      },
+      {
+        "name": "fact_inquiry_inquiry_id_key",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "UNIQUE (inquiry_id)",
+        "table_name": "fact_inquiry"
+      },
+      {
+        "name": "fact_inquiry_load_batch_id_fkey",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "FOREIGN KEY (load_batch_id) REFERENCES warehouse_meta.batches(batch_id) DEFERRABLE INITIALLY DEFERRED",
+        "table_name": "fact_inquiry"
+      },
+      {
+        "name": "fact_inquiry_pkey",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "PRIMARY KEY (inquiry_key)",
+        "table_name": "fact_inquiry"
+      },
+      {
+        "name": "fact_inquiry_room_key_fkey",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "FOREIGN KEY (room_key) REFERENCES warehouse.dim_room(room_key)",
+        "table_name": "fact_inquiry"
+      },
+      {
+        "name": "fact_notification_check_0",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK (((kind)::text = ANY ((ARRAY['BILL'::character varying, 'PAYMENT'::character varying, 'REQUEST'::character varying, 'TENANCY'::character varying, 'UNKNOWN'::character varying])::text[])))",
+        "table_name": "fact_notification"
+      },
+      {
+        "name": "fact_notification_check_1",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK ((notification_key ~ '^[0-9a-f]{16}$'::text))",
+        "table_name": "fact_notification"
+      },
+      {
+        "name": "fact_notification_check_2",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK ((tenant_key ~ '^[0-9a-f]{16}$'::text))",
+        "table_name": "fact_notification"
+      },
+      {
+        "name": "fact_notification_load_batch_id_fkey",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "FOREIGN KEY (load_batch_id) REFERENCES warehouse_meta.batches(batch_id) DEFERRABLE INITIALLY DEFERRED",
+        "table_name": "fact_notification"
+      },
+      {
+        "name": "fact_notification_notification_id_key",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "UNIQUE (notification_id)",
+        "table_name": "fact_notification"
+      },
+      {
+        "name": "fact_notification_pkey",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "PRIMARY KEY (notification_key)",
+        "table_name": "fact_notification"
+      },
+      {
+        "name": "fact_notification_tenant_key_fkey",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "FOREIGN KEY (tenant_key) REFERENCES warehouse.dim_tenant(tenant_key)",
+        "table_name": "fact_notification"
+      },
+      {
+        "name": "fact_occupancy_event_check_0",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK (((event_type)::text = ANY ((ARRAY['MOVE_OUT'::character varying, 'TRANSFER'::character varying, 'UNKNOWN'::character varying])::text[])))",
+        "table_name": "fact_occupancy_event"
+      },
+      {
+        "name": "fact_occupancy_event_check_1",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK ((event_key ~ '^[0-9a-f]{16}$'::text))",
+        "table_name": "fact_occupancy_event"
+      },
+      {
+        "name": "fact_occupancy_event_check_2",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK ((tenant_key ~ '^[0-9a-f]{16}$'::text))",
+        "table_name": "fact_occupancy_event"
+      },
+      {
+        "name": "fact_occupancy_event_check_3",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK ((previous_lease_key ~ '^[0-9a-f]{16}$'::text))",
+        "table_name": "fact_occupancy_event"
+      },
+      {
+        "name": "fact_occupancy_event_check_4",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK ((new_lease_key ~ '^[0-9a-f]{16}$'::text))",
+        "table_name": "fact_occupancy_event"
+      },
+      {
+        "name": "fact_occupancy_event_check_5",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK ((performed_by_tenant_key ~ '^[0-9a-f]{16}$'::text))",
+        "table_name": "fact_occupancy_event"
+      },
+      {
+        "name": "fact_occupancy_event_event_id_key",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "UNIQUE (event_id)",
+        "table_name": "fact_occupancy_event"
+      },
+      {
+        "name": "fact_occupancy_event_load_batch_id_fkey",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "FOREIGN KEY (load_batch_id) REFERENCES warehouse_meta.batches(batch_id) DEFERRABLE INITIALLY DEFERRED",
+        "table_name": "fact_occupancy_event"
+      },
+      {
+        "name": "fact_occupancy_event_new_lease_key_fkey",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "FOREIGN KEY (new_lease_key) REFERENCES warehouse.dim_lease(lease_key)",
+        "table_name": "fact_occupancy_event"
+      },
+      {
+        "name": "fact_occupancy_event_performed_by_tenant_key_fkey",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "FOREIGN KEY (performed_by_tenant_key) REFERENCES warehouse.dim_tenant(tenant_key)",
+        "table_name": "fact_occupancy_event"
+      },
+      {
+        "name": "fact_occupancy_event_pkey",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "PRIMARY KEY (event_key)",
+        "table_name": "fact_occupancy_event"
+      },
+      {
+        "name": "fact_occupancy_event_previous_lease_key_fkey",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "FOREIGN KEY (previous_lease_key) REFERENCES warehouse.dim_lease(lease_key)",
+        "table_name": "fact_occupancy_event"
+      },
+      {
+        "name": "fact_occupancy_event_tenant_key_fkey",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "FOREIGN KEY (tenant_key) REFERENCES warehouse.dim_tenant(tenant_key)",
+        "table_name": "fact_occupancy_event"
+      },
+      {
+        "name": "fact_payment_bill_key_fkey",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "FOREIGN KEY (bill_key) REFERENCES warehouse.fact_billing(bill_key)",
+        "table_name": "fact_payment"
+      },
+      {
+        "name": "fact_payment_check_0",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK ((amount >= (0)::numeric))",
+        "table_name": "fact_payment"
+      },
+      {
+        "name": "fact_payment_check_1",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK ((payment_key ~ '^[0-9a-f]{16}$'::text))",
+        "table_name": "fact_payment"
+      },
+      {
+        "name": "fact_payment_check_2",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK ((bill_key ~ '^[0-9a-f]{16}$'::text))",
+        "table_name": "fact_payment"
+      },
+      {
+        "name": "fact_payment_check_3",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK ((lease_key ~ '^[0-9a-f]{16}$'::text))",
+        "table_name": "fact_payment"
+      },
+      {
+        "name": "fact_payment_check_4",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK ((tenant_key ~ '^[0-9a-f]{16}$'::text))",
+        "table_name": "fact_payment"
+      },
+      {
+        "name": "fact_payment_lease_key_fkey",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "FOREIGN KEY (lease_key) REFERENCES warehouse.dim_lease(lease_key)",
+        "table_name": "fact_payment"
+      },
+      {
+        "name": "fact_payment_load_batch_id_fkey",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "FOREIGN KEY (load_batch_id) REFERENCES warehouse_meta.batches(batch_id) DEFERRABLE INITIALLY DEFERRED",
+        "table_name": "fact_payment"
+      },
+      {
+        "name": "fact_payment_payment_id_key",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "UNIQUE (payment_id)",
+        "table_name": "fact_payment"
+      },
+      {
+        "name": "fact_payment_pkey",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "PRIMARY KEY (payment_key)",
+        "table_name": "fact_payment"
+      },
+      {
+        "name": "fact_payment_tenant_key_fkey",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "FOREIGN KEY (tenant_key) REFERENCES warehouse.dim_tenant(tenant_key)",
+        "table_name": "fact_payment"
+      },
+      {
+        "name": "fact_payment_correction_check_0",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK ((correction_key ~ '^[0-9a-f]{16}$'::text))",
+        "table_name": "fact_payment_correction"
+      },
+      {
+        "name": "fact_payment_correction_check_1",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK ((payment_key ~ '^[0-9a-f]{16}$'::text))",
+        "table_name": "fact_payment_correction"
+      },
+      {
+        "name": "fact_payment_correction_correction_id_key",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "UNIQUE (correction_id)",
+        "table_name": "fact_payment_correction"
+      },
+      {
+        "name": "fact_payment_correction_load_batch_id_fkey",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "FOREIGN KEY (load_batch_id) REFERENCES warehouse_meta.batches(batch_id) DEFERRABLE INITIALLY DEFERRED",
+        "table_name": "fact_payment_correction"
+      },
+      {
+        "name": "fact_payment_correction_payment_key_fkey",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "FOREIGN KEY (payment_key) REFERENCES warehouse.fact_payment(payment_key)",
+        "table_name": "fact_payment_correction"
+      },
+      {
+        "name": "fact_payment_correction_pkey",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "PRIMARY KEY (correction_key)",
+        "table_name": "fact_payment_correction"
+      },
+      {
+        "name": "fact_tenant_request_check_0",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK (((kind)::text = ANY ((ARRAY['MAINTENANCE'::character varying, 'OTHER'::character varying, 'UNKNOWN'::character varying])::text[])))",
+        "table_name": "fact_tenant_request"
+      },
+      {
+        "name": "fact_tenant_request_check_1",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK (((priority)::text = ANY ((ARRAY['HIGH'::character varying, 'NORMAL'::character varying, 'UNKNOWN'::character varying, 'URGENT'::character varying])::text[])))",
+        "table_name": "fact_tenant_request"
+      },
+      {
+        "name": "fact_tenant_request_check_2",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK (((status)::text = ANY ((ARRAY['IN_PROGRESS'::character varying, 'NEW'::character varying, 'RESOLVED'::character varying, 'SCHEDULED'::character varying, 'UNKNOWN'::character varying])::text[])))",
+        "table_name": "fact_tenant_request"
+      },
+      {
+        "name": "fact_tenant_request_check_3",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK ((request_key ~ '^[0-9a-f]{16}$'::text))",
+        "table_name": "fact_tenant_request"
+      },
+      {
+        "name": "fact_tenant_request_check_4",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK ((tenant_key ~ '^[0-9a-f]{16}$'::text))",
+        "table_name": "fact_tenant_request"
+      },
+      {
+        "name": "fact_tenant_request_check_5",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "CHECK ((room_key ~ '^[0-9a-f]{16}$'::text))",
+        "table_name": "fact_tenant_request"
+      },
+      {
+        "name": "fact_tenant_request_load_batch_id_fkey",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "FOREIGN KEY (load_batch_id) REFERENCES warehouse_meta.batches(batch_id) DEFERRABLE INITIALLY DEFERRED",
+        "table_name": "fact_tenant_request"
+      },
+      {
+        "name": "fact_tenant_request_pkey",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "PRIMARY KEY (request_key)",
+        "table_name": "fact_tenant_request"
+      },
+      {
+        "name": "fact_tenant_request_request_id_key",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "UNIQUE (request_id)",
+        "table_name": "fact_tenant_request"
+      },
+      {
+        "name": "fact_tenant_request_room_key_fkey",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "FOREIGN KEY (room_key) REFERENCES warehouse.dim_room(room_key)",
+        "table_name": "fact_tenant_request"
+      },
+      {
+        "name": "fact_tenant_request_tenant_key_fkey",
+        "schema": "warehouse",
+        "validated": true,
+        "definition": "FOREIGN KEY (tenant_key) REFERENCES warehouse.dim_tenant(tenant_key)",
+        "table_name": "fact_tenant_request"
+      },
+      {
+        "name": "attempts_pkey",
+        "schema": "warehouse_meta",
+        "validated": true,
+        "definition": "PRIMARY KEY (run_id)",
+        "table_name": "attempts"
+      },
+      {
+        "name": "batches_pkey",
+        "schema": "warehouse_meta",
+        "validated": true,
+        "definition": "PRIMARY KEY (batch_id)",
+        "table_name": "batches"
+      },
+      {
+        "name": "batches_transformation_run_id_key",
+        "schema": "warehouse_meta",
+        "validated": true,
+        "definition": "UNIQUE (transformation_run_id)",
+        "table_name": "batches"
+      },
+      {
+        "name": "current_batch_batch_id_fkey",
+        "schema": "warehouse_meta",
+        "validated": true,
+        "definition": "FOREIGN KEY (batch_id) REFERENCES warehouse_meta.batches(batch_id)",
+        "table_name": "current_batch"
+      },
+      {
+        "name": "current_batch_pkey",
+        "schema": "warehouse_meta",
+        "validated": true,
+        "definition": "PRIMARY KEY (singleton)",
+        "table_name": "current_batch"
+      },
+      {
+        "name": "current_batch_singleton_check",
+        "schema": "warehouse_meta",
+        "validated": true,
+        "definition": "CHECK (singleton)",
+        "table_name": "current_batch"
+      },
+      {
+        "name": "schema_contract_pkey",
+        "schema": "warehouse_meta",
+        "validated": true,
+        "definition": "PRIMARY KEY (version)",
+        "table_name": "schema_contract"
+      }
+    ]
+  }
+}

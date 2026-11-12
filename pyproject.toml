@@ -11,12 +11,15 @@ dependencies = []
 
 [project.optional-dependencies]
 airflow = ["apache-airflow>=2.7"]
+load = ["psycopg[binary]>=3.2,<4", "tzdata; sys_platform == 'win32'"]
 
 [project.scripts]
 spartment-extract = "spartment.stage1_extract.cli:main"
 spartment-transform = "spartment.stage2_transform.cli:main"
 spartment-transform-retain = "spartment.stage2_transform.retention:main"
 spartment-retain = "spartment.common.retention:main"
+spartment-load = "spartment.stage3_load.cli:main"
+spartment-load-retain = "spartment.stage3_load.retention:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

@@ -1,5 +1,3 @@
-"""Stage 3: load of transformed data into the analytical destination.
+"""Stage 3: validated, transactional publication of a Stage 2 snapshot."""
 
-Not yet implemented. This package exists so that later stages compose without
-importing Stage 1 internals.
-"""
+__version__ = "1.0.0"

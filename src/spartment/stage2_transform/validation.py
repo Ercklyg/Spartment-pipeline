@@ -35,6 +35,9 @@ from spartment.stage2_transform.contract import (
     TIMESTAMP_PATTERN,
 )
 from spartment.stage2_transform.models import Batch, TransformContext, TransformSettings
+from spartment.stage2_transform.null_profile import (
+    OPTIONAL_COLUMNS, OPTIONAL_NULL_PROFILE_VERSION, optional_null_profile,
+)
 from spartment.stage2_transform.standardize import normalize_uuid, parse_decimal
 from spartment.stage2_transform.writer import content_checksum
 
@@ -60,16 +63,6 @@ JOIN_CARDINALITY: tuple[tuple[str, str, str], ...] = (
     ("J-12", "tenant_occupancy_events", "fact_occupancy_event"),
     ("J-13", "tenant_occupancy_events", "fact_occupancy_event"),
 )
-
-OPTIONAL_COLUMNS: dict[str, tuple[str, ...]] = {
-    "dim_tenant": ("phone", "email", "lease_end"),
-    "dim_lease": ("lease_end_date",),
-    "fact_assignment": ("room_key", "lease_end"),
-    "fact_payment": ("reference_note",),
-    "fact_inquiry": ("room_key", "phone"),
-    "fact_tenant_request": ("room_key",),
-}
-
 
 def _add(
     checks: list[CheckResult],
@@ -664,14 +657,17 @@ def validate(
         if not rows:
             continue
         previous = _previous_log(settings, table, ctx.run_id)
-        previous_rates = previous.get("null_rates", {}) if previous else {}
+        previous_profiles = previous.get("optional_null_profile", {}) if (
+            previous and previous.get("optional_null_profile_version") == OPTIONAL_NULL_PROFILE_VERSION
+        ) else {}
+        profiles = optional_null_profile(table, rows)
         for column in columns:
-            nulls = sum(1 for row in rows if row.get(column) is None or row.get(column) == "")
-            current_rate = nulls / len(rows)
-            previous_rate = previous_rates.get(column) if isinstance(previous_rates, dict) else None
+            current_rate = profiles[column]["unexpected_null_rate"]
+            previous_rate = previous_profiles.get(column, {}).get("unexpected_null_rate")
             if current_rate > 0.90:
                 null_baseline_failures.append(
-                    {"table": table, "column": column, "rate": round(current_rate, 4), "reason": ">90%"}
+                    {"table": table, "column": column, "rate": round(current_rate, 4), "reason": ">90%",
+                     **profiles[column]}
                 )
             elif previous_rate is not None and current_rate > float(previous_rate):
                 null_baseline_failures.append(
@@ -681,6 +677,7 @@ def validate(
                         "rate": round(current_rate, 4),
                         "previous": previous_rate,
                         "reason": "increased",
+                        **profiles[column],
                     }
                 )
     null_failure = any(item.get("reason") == ">90%" for item in null_baseline_failures)
@@ -688,9 +685,9 @@ def validate(
         checks,
         "V-18 Null rate on optional columns",
         "optional columns",
-        "Track degradation of optional data",
+        "Track unexpected optional-data absence; preserve contract-permitted nulls",
         FAIL if null_failure else WARNING if null_baseline_failures else PASS,
-        "optional null rates are stable" if not null_baseline_failures else f"{len(null_baseline_failures)} optional-column regression(s)",
+        "unexpected optional null rates are stable; expected nulls are profiled separately" if not null_baseline_failures else f"{len(null_baseline_failures)} unexpected optional-column regression(s)",
         False,
         null_baseline_failures,
     )

@@ -1,0 +1,11 @@
+# Stage 3 resource thresholds. Credentials stay in .env.
+[load]
+target_profile = "auto"
+capacity_mode = "auto"
+database_budget_bytes = 450000000
+hosted_reserve_bytes = 16000000
+budget_seconds = 1800
+warning_seconds = 1200
+lock_seconds = 30
+min_free_bytes = 1073741824
+warning_free_ratio = 0.20

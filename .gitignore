@@ -6,6 +6,10 @@ rawdata/
 transformed/
 logs/
 quarantine/
+loaded/
+backups/
+.local-postgres/
+tmp/
 
 # Python
 __pycache__/

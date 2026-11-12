@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from datetime import timedelta, timezone
 
-RULES_VERSION = "1.0"
+RULES_VERSION = "1.1"
 PHT = timezone(timedelta(hours=8))
 
 SOURCE_TABLES: tuple[str, ...] = (
