@@ -80,16 +80,43 @@ class LoadIntegrationTests(unittest.TestCase):
     def test_success_duplicate_and_dry_run(self):
         first = load(self.settings, self.path, dry_run=True)
         self.assertEqual(first["status"], "DRY_RUN", first)
+        self.assertEqual(first["export_status"], "NOT_APPLICABLE")
+        self.assertFalse((self.root / "loaded" / "exports").exists())
         self.assertIsNone(self.current())
         result = load(self.settings, self.path)
         self.assertEqual(result["status"], "SUCCESS", result)
         self.assertEqual(len(result["tables"]), 13)
+        self.assertEqual(result["export_status"], "SUCCESS")
+        export = Path(result["export_path"])
+        manifest = json.loads((export / "manifest.json").read_text())
+        from spartment.stage3_load.package import sha256
+        for table, entry in manifest["tables"].items():
+            self.assertEqual(entry["row_count"], result["tables"][table]["records_loaded"])
+            self.assertEqual(sha256(export / entry["file"]), result["output_checksums"][table])
+        self.assertFalse((self.root / "loaded" / "_work" / result["run_id"]).exists())
         self.assertEqual(self.counts(), {t: r["records_received"] for t, r in result["tables"].items()})
         counts = self.counts()
         duplicate = load(self.settings, self.path)
         self.assertEqual(duplicate["status"], "SKIPPED_ALREADY_LOADED", duplicate)
+        self.assertEqual(duplicate["export_status"], "NOT_APPLICABLE")
+        self.assertEqual(len(list(export.parent.iterdir())), 1)
         self.assertEqual(self.counts(), counts)
         self.assertEqual(duplicate["original_success_run_id"], result["run_id"])
+
+    def test_export_failure_keeps_committed_data_and_frozen_inputs(self):
+        with patch("spartment.stage3_load.pipeline.export_csv", side_effect=OSError("private detail")):
+            result = load(self.settings, self.path)
+        self.assertEqual(result["status"], "SUCCESS", result)
+        self.assertTrue(result["published"])
+        self.assertFalse(result["retryable"])
+        self.assertEqual(result["export_status"], "FAILED")
+        self.assertTrue(Path(result["export_recovery_path"]).is_dir())
+        self.assertEqual(self.counts(), {t: d["records_loaded"] for t, d in result["tables"].items()})
+        completion = json.loads((self.root / "loaded" / "_handover" / f"{result['run_id']}.json").read_text())
+        self.assertEqual(completion["export_status"], "FAILED")
+        self.assertNotIn("private detail", json.dumps(completion))
+        duplicate = load(self.settings, self.path)
+        self.assertEqual(duplicate["status"], "SKIPPED_ALREADY_LOADED")
 
     def test_failed_replacement_rolls_back_every_table(self):
         good = load(self.settings, self.path)
@@ -101,6 +128,8 @@ class LoadIntegrationTests(unittest.TestCase):
                 conn.execute("SELECT 1/0")
         failed = load(self.settings, path, hook=failure)
         self.assertEqual(failed["status"], "FAILED", failed)
+        self.assertEqual(failed["export_status"], "NOT_APPLICABLE")
+        self.assertFalse((self.root / "loaded" / "exports" / failed["run_id"]).exists())
         self.assertEqual(failed["error_code"], "22012")
         self.assertEqual(self.counts(), counts)
         self.assertEqual(self.current(), current)
@@ -126,6 +155,8 @@ class LoadIntegrationTests(unittest.TestCase):
         warning_settings = replace(self.settings, warning_free_ratio=1.0)
         held = load(warning_settings, self.path)
         self.assertEqual(held["status"], "HELD", held)
+        self.assertEqual(held["export_status"], "NOT_APPLICABLE")
+        self.assertFalse((self.root / "loaded" / "exports").exists())
         self.assertIsNone(self.current())
         h = json.loads(self.path.read_text())
         review = dict(batch_id=h["batch_id"], output_checksums=h["output_checksums"],

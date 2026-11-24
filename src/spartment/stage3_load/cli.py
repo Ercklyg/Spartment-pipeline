@@ -51,6 +51,7 @@ def main(argv: list[str] | None = None) -> int:
     setup = commands.add_parser("setup", help="Owner-only creation of the warehouse schema")
     setup.add_argument("--provision-role", action="store_true", help="Create restricted login and save its generated credential to .env")
     commands.add_parser("schema-sql", help="Print schema DDL for review without connecting")
+    commands.add_parser("migrate-announcements", help="Owner-only upgrade of the reviewed Supabase notification constraint")
     inspect = commands.add_parser("inspect", help="Read-only contract, counts and capacity inspection; no schema or data writes")
     inspect.add_argument("--owner", action="store_true", help="Use owner DSN before runtime provisioning")
     provision = commands.add_parser("provision-existing", help="Add a new restricted runtime login for the reviewed warehouse without changing existing tables or roles")
@@ -66,6 +67,16 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
     try:
         load_env()
+        if args.command == "migrate-announcements":
+            import psycopg
+            from .hosted import validate_destination
+            from .migration import migrate_announcements, reviewed_contracts
+            owner = os.environ.get("SPARTMENT_LOAD_OWNER_DSN", "")
+            validate_destination(owner)
+            with psycopg.connect(owner, autocommit=True, connect_timeout=10) as conn:
+                changed = migrate_announcements(conn, *reviewed_contracts())
+            print(json.dumps({"migration": "APPLIED" if changed else "ALREADY_APPLIED"}))
+            return 0
         if args.command == "schema-sql":
             from .schema import statements
             print(";\n\n".join(statements()) + ";")
@@ -125,7 +136,8 @@ def main(argv: list[str] | None = None) -> int:
                 settings.budget_seconds = min(settings.budget_seconds, int(remaining))
             result = load(settings, args.handover, dry_run=args.dry_run, warning_review=review,
                           retry_of=previous, attempt_number=attempt)
-            print(json.dumps({key: result.get(key) for key in ("run_id", "status", "acceptance_decision", "published", "error_code", "retryable")}))
+            print(json.dumps({key: result.get(key) for key in ("run_id", "status", "acceptance_decision", "published", "error_code", "retryable",
+                                                              "export_status", "export_path", "export_error_message", "export_recovery_path")}))
             status = result["status"]
             if status in {"SUCCESS", "SKIPPED_ALREADY_LOADED", "DRY_RUN"}:
                 return 0

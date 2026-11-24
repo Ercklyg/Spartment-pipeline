@@ -106,7 +106,7 @@ def existing_contract():
 
 class ExistingWarehouse(LocalWarehouse):
     profile = "supabase_existing"
-    schema_version = "1.0"
+    schema_version = "1.1"
     metadata_schema = "warehouse_meta"
     lineage = ("load_batch_id",)
 
