@@ -306,7 +306,7 @@ CREATE TABLE warehouse.fact_notification (
     created_at timestamp with time zone NOT NULL,
     transformation_run_id character varying(64) NOT NULL,
     load_batch_id text NOT NULL,
-    CONSTRAINT fact_notification_check_0 CHECK (((kind)::text = ANY ((ARRAY['BILL'::character varying, 'PAYMENT'::character varying, 'REQUEST'::character varying, 'TENANCY'::character varying, 'UNKNOWN'::character varying])::text[]))),
+    CONSTRAINT fact_notification_check_0 CHECK (((kind)::text = ANY (ARRAY[('BILL'::character varying)::text, ('PAYMENT'::character varying)::text, ('REQUEST'::character varying)::text, ('TENANCY'::character varying)::text, ('ANNOUNCEMENT'::character varying)::text, ('UNKNOWN'::character varying)::text]))),
     CONSTRAINT fact_notification_check_1 CHECK ((notification_key ~ '^[0-9a-f]{16}$'::text)),
     CONSTRAINT fact_notification_check_2 CHECK ((tenant_key ~ '^[0-9a-f]{16}$'::text))
 );

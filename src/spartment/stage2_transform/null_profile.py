@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from typing import Any
 
-OPTIONAL_NULL_PROFILE_VERSION = 2
+OPTIONAL_NULL_PROFILE_VERSION = 3
 OPTIONAL_COLUMNS: dict[str, tuple[str, ...]] = {
     "dim_tenant": ("phone", "email", "lease_end"),
     "dim_lease": ("lease_end_date",),
@@ -13,9 +13,11 @@ OPTIONAL_COLUMNS: dict[str, tuple[str, ...]] = {
     "fact_tenant_request": ("room_key",),
 }
 
-# C-03/B-05/B-06 and the published nullable-FK contract explicitly allow these
-# absences. Do not manufacture an end date or a room merely to improve a rate.
+# C-03/B-05/B-06 allow these absences, including optional payment notes and
+# inquiry phones. Keep raw missing counts; never manufacture replacement values.
 EXPECTED_ABSENCE = {
+    ("fact_payment", "reference_note"),
+    ("fact_inquiry", "phone"),
     ("dim_tenant", "lease_end"),
     ("dim_lease", "lease_end_date"),
     ("fact_assignment", "lease_end"),

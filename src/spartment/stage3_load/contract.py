@@ -9,7 +9,7 @@ from spartment.stage2_transform.contract import (
     OUTPUT_TABLES, OUTPUT_TYPES, REQUIRED_NOT_NULL, RULES_VERSION, SURROGATE_KEY,
 )
 
-SCHEMA_VERSION = "1.0.0"
+SCHEMA_VERSION = "1.1.0"
 LOCK_ID = 734215830
 LINEAGE = ("load_run_id", "load_batch_id", "loaded_at")
 FAMILIES = {

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from datetime import timedelta, timezone
 
-RULES_VERSION = "1.1"
+RULES_VERSION = "1.2"
 PHT = timezone(timedelta(hours=8))
 
 SOURCE_TABLES: tuple[str, ...] = (
@@ -644,6 +644,7 @@ CODE_MAPS: dict[str, dict[str, str]] = {
         "resolved": "RESOLVED",
     },
     "notification_kind": {
+        "announcement": "ANNOUNCEMENT",
         "bill": "BILL",
         "payment": "PAYMENT",
         "request": "REQUEST",
@@ -684,7 +685,7 @@ CODE_DOMAINS: dict[str, dict[str, frozenset[str]]] = {
     },
     "fact_occupancy_event": {"event_type": frozenset({"MOVE_OUT", "TRANSFER", "UNKNOWN"})},
     "fact_notification": {
-        "kind": frozenset({"BILL", "PAYMENT", "REQUEST", "TENANCY", "UNKNOWN"})
+        "kind": frozenset({"BILL", "PAYMENT", "REQUEST", "TENANCY", "ANNOUNCEMENT", "UNKNOWN"})
     },
 }
 

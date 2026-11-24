@@ -1,6 +1,6 @@
 {
-  "version": "1.0",
-  "fingerprint": "2773f1dee48e86f3596496328195204b83687027bc8ccd2e8a027cb6bcd8d858",
+  "version": "1.1",
+  "fingerprint": "c6fc66f8d8bc246eb4c6cc7f8fd4d85f4060561c635c6abe629bfa1ba8aaea1d",
   "catalog": {
     "columns": [
       {
@@ -3948,7 +3948,7 @@
         "name": "fact_notification_check_0",
         "schema": "warehouse",
         "validated": true,
-        "definition": "CHECK (((kind)::text = ANY ((ARRAY['BILL'::character varying, 'PAYMENT'::character varying, 'REQUEST'::character varying, 'TENANCY'::character varying, 'UNKNOWN'::character varying])::text[])))",
+        "definition": "CHECK (((kind)::text = ANY (ARRAY[('BILL'::character varying)::text, ('PAYMENT'::character varying)::text, ('REQUEST'::character varying)::text, ('TENANCY'::character varying)::text, ('ANNOUNCEMENT'::character varying)::text, ('UNKNOWN'::character varying)::text])))",
         "table_name": "fact_notification"
       },
       {

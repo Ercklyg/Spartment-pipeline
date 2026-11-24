@@ -2,7 +2,23 @@
 
 This record distinguishes isolated implementation verification from deployment into the user's Supabase warehouse. The initial synthetic demonstration used no operational tenant data; later sections separately record the real-source extraction, validation and publication.
 
-> **Current status:** the real-source batch was subsequently published successfully to the existing Supabase warehouse: **2,293 analytical rows**, with a verified pre-refresh backup, exact reconciliation, preserved prior batch history, and a proven duplicate no-op. The earlier synthetic results and holds below are historical evidence. See the final publication section for the actual production-target result. Scheduling remains inactive/unverified.
+> **Current status (2026-11-24):** load `spartment-load-2026-11-24-231836-c124d823` completed SUCCESS / APPROVED / published=true after explicit user review of PRE-12. It committed 2,515 rows and generated 13 verified CSVs plus a manifest. Earlier holds and the 2026-11-13 publication are historical evidence. Scheduling remains inactive/unverified.
+
+## Attempts and Successful Publication: 2026-11-24
+
+- Extraction `spartment-extract-2026-11-24-2241`: APPROVED, 1,325 rows across 12 source tables.
+- Transformation `spartment-transform-2026-11-24-2254`: APPROVED and released under rules version 1.2, recognizing ANNOUNCEMENT and permitted blank payment notes/inquiry phones without fabricated values.
+- The pre-migration backup is `backups/spartment-warehouse/spartment-load-2026-11-24-225710-6a2b4c07-pre-announcements.dump`, with its JSON checksum/readability manifest. The warehouse constraint and registered contract were upgraded to version 1.1; the subsequent load passed schema validation.
+- Load `spartment-load-2026-11-24-225952-d26c50e7`: HELD / MANUAL REVIEW, published=false. All 13 tables staged; PRE-12 stopped publication and the transaction rolled back. No successful-load CSV export was created.
+- PRE-08 passed: database usage was 16,823,987 bytes against a configured 450,000,000-byte budget, with a 29,197,312-byte reserve. Local free space was 27,860,402,176 bytes against 110,471,130 bytes required. These measurements do not establish Supabase physical disk headroom.
+- PRE-12 remains unresolved: fresh project-bound Supabase disk evidence is missing, and the laptop free-space ratio is below the configured 20% warning threshold. Fresh Supabase evidence alone may therefore leave a local-space warning. Any warning review must name this exact batch/checksum set; the historical review does not approve this attempt.
+- Verification: the full 63-test run initially had one migration catalog-format failure. After correction, all 10 warehouse compatibility/migration tests passed. The subsequent review also passed 27 transformation/retention tests and 3 CSV-export tests. A clean complete 63-test rerun is not claimed.
+
+A subsequent full rerun extracted the same 1,325 source rows (`spartment-extract-2026-11-24-2310`) and produced APPROVED transformation `spartment-transform-2026-11-24-2310`. Load `spartment-load-2026-11-24-231022-28828cb5` again held at PRE-12 without publication.
+
+The user supplied a dashboard screenshot showing 16% disk usage, confirmed it belongs to the destination warehouse project, and explicitly approved the remaining PRE-12 warning. The screenshot did not supply absolute available disk bytes; none were invented. The approval was recorded for the exact batch and checksum map in `loaded/_reviews/spartment-transform-2026-11-24-2310-PRE-12.json`; critical checks remained enforced.
+
+Load `spartment-load-2026-11-24-231836-c124d823` then completed SUCCESS / APPROVED / published=true with 2,515 committed analytical rows. POST-11 confirmed the database commit. All 13 exports under `loaded/exports/spartment-load-2026-11-24-231836-c124d823/` were independently checked for headers, row counts and SHA-256 equality with the approved input and manifest. The pre-refresh backup checksum also matched its manifest. This approval applies only to this exact batch; it is not a standing waiver for future loads.
 
 ## Environment and Method
 

@@ -6,7 +6,7 @@
 
 The objective of the Spartment Data Transformation Stage is to take the validated dataset handed over by the Extraction Stage (`docs/extraction.md`) and transform it into a cleaned, standardized, documented, and analytically usable dataset for room availability and occupancy monitoring, tenant assignment tracking, billing and collection monitoring, prospective tenant inquiry analysis, and tenant request analysis.
 
-> Stage 2 is implemented in `src/spartment/stage2_transform/`. Rules version 1.1 corrects V-18 profiling of contract-permitted nulls without changing analytical values or the Stage 1 contract. Raw null rates remain logged; optional-null profile version 2 separately records expected nulls, eligible rows and unexpected null rates. Baselines are compared only within the same profile version.
+> Stage 2 is implemented in `src/spartment/stage2_transform/`. Rules version 1.2 recognizes ANNOUNCEMENT notifications and permits optional blank payment notes and inquiry phones. Raw null rates remain logged; optional-null profile version 3 separately records expected nulls, eligible rows and unexpected null rates. Baselines are compared only within the same profile version.
 
 Transformation does not connect to Supabase, does not call PostgREST, and does not re-extract a single record. Its only input is the Stage 1 handover.
 
@@ -284,7 +284,7 @@ Exact target columns and types are listed in Section 6.1.
 | `tenant_requests.kind` | `maintenance`, `other`, mixed case | `MAINTENANCE`, `OTHER` | `UNKNOWN` + `code_unmapped = TRUE` |
 | `tenant_requests.priority` | `Normal`, `High`, `Urgent`, mixed case | `NORMAL`, `HIGH`, `URGENT` | `UNKNOWN` + `code_unmapped = TRUE` |
 | `tenant_requests.status` | `New`, `Scheduled`, `In progress`, `Resolved`, mixed case | `NEW`, `SCHEDULED`, `IN_PROGRESS`, `RESOLVED` | `UNKNOWN` + `code_unmapped = TRUE` |
-| `notifications.kind` | `bill`, `payment`, `request`, `tenancy`, mixed case | `BILL`, `PAYMENT`, `REQUEST`, `TENANCY` | `UNKNOWN` + `code_unmapped = TRUE` |
+| `notifications.kind` | `bill`, `payment`, `request`, `tenancy`, `announcement`, mixed case | `BILL`, `PAYMENT`, `REQUEST`, `TENANCY`, `ANNOUNCEMENT` | `UNKNOWN` + `code_unmapped = TRUE` |
 | Currency | — | `PHP` | n/a |
 | Unit | — | `sqm` | n/a |
 | Region | — | `PH` / `Asia/Manila` | n/a |
@@ -671,7 +671,7 @@ All timestamps are rendered as ISO 8601 with an explicit `+08:00` offset. Empty 
 | `notification_key` | `CHAR(16)` | NOT NULL | PK | Deterministic surrogate |
 | `notification_id` | `UUID` | NOT NULL | UNIQUE | Natural key |
 | `tenant_key` | `CHAR(16)` | NOT NULL | FK → `dim_tenant.tenant_key` | Recipient |
-| `kind` | `VARCHAR(30)` | NOT NULL | — | `BILL` / `PAYMENT` / `REQUEST` / `TENANCY` / `UNKNOWN` |
+| `kind` | `VARCHAR(30)` | NOT NULL | — | `BILL` / `PAYMENT` / `REQUEST` / `TENANCY` / `ANNOUNCEMENT` / `UNKNOWN` |
 | `code_unmapped` | `BOOLEAN` | NOT NULL | — | `TRUE` if kind was unmapped |
 | `title` | `VARCHAR(300)` | NOT NULL | — | Trimmed |
 | `source_id` | `UUID` | NULL | — | Polymorphic pointer; no FK |
@@ -814,7 +814,7 @@ These checks verify the **transformed output**. Stage 1 validation is not repeat
 | **V-15** Exclusion accounting | X-01…X-06 counters | Prove business exclusions are counted and reported | PASS: every exclusion has a counter and the count equals the rows affected. FAIL: missing counter | **Non-critical** |
 | **V-16** Type / format conformance | Every output column vs Section 6.1 | Confirm CSV values parse as the contracted type | PASS: 0 values fail parse or format. FAIL: >0 | **Non-critical** |
 | **V-17** Code domain conformance | `status`, `role`, `priority`, `kind`, `bill_type`, `overdue_bucket`, `event_type`, `billing_period` | Confirm code sets are respected | PASS: 100% within Section 4.3 and Section 6.1. FAIL: any out-of-domain value | **Non-critical** |
-| **V-18** Null rate on optional columns | `phone`, `email`, nullable dates/references, `reference_note` | Track unexpected absence without treating permitted nulls as defects | Profile raw and expected nulls separately. Exclude permitted open-ended lease dates, unselected inquiry rooms, ended-assignment rooms and OTHER-request rooms from the eligible population. PASS: unexpected rate stable; WARNING: increase against the same profile-version baseline; FAIL: unexpected rate >90%. Contact/reference-note monitoring remains active | **Non-critical** |
+| **V-18** Null rate on optional columns | `phone`, `email`, nullable dates/references, `reference_note` | Track unexpected absence without treating permitted nulls as defects | Profile raw and expected nulls separately. Exclude permitted open-ended lease dates, unselected inquiry rooms, ended-assignment rooms OTHER-request rooms, optional payment notes and inquiry phones from the eligible population. PASS: unexpected rate stable; WARNING: increase against the same profile-version baseline; FAIL: unexpected rate >90%. Tenant contact monitoring remains active; raw optional missing counts remain logged | **Non-critical** |
 | **V-19** Unmapped code rate | `code_unmapped` flags | Detect new code variants | PASS: ≤1% of rows. WARNING: 1–5%. FAIL: >5% | **Non-critical** |
 | **V-20** Rejection rate | Per table and overall | Decide acceptance against the pre-declared threshold | PASS: ≤1.0%. WARNING: >1.0% and ≤5.0%. FAIL: >5.0%. C-06 duplicates are reported by V-02 and are not included in this rate | **Critical** for FAIL; **Non-critical** for WARNING |
 | **V-21** Idempotency assertion | Output of a repeat run | Prove Section 1.4's claim | PASS: same `run_date` and `parent_run_id` produce the same content checksum. FAIL: any difference not explained by a rules-version change | **Non-critical** |
@@ -859,7 +859,7 @@ Each transformation batch records the following fields for monitoring, troublesh
 | `quarantine_file` | Path to the rejected-record file, if any | `quarantine/transformation/2026-10-18/fact_billing_rejected.csv` |
 | `error_message` / `error_code` | Error detail if applicable | `None` / `S01_FAIL: staged bills missing column` |
 | `transformation_duration_ms` | Wall-clock duration | `221000` |
-| `rules_version` | Version of the rules applied | `1.1` |
+| `rules_version` | Version of the rules applied | `1.2` |
 | `optional_null_profile_version` | Identifies the expected/unexpected null-rate policy | `2` |
 | `optional_null_profile` | Per-field raw nulls/rate, expected nulls, eligible rows, unexpected nulls/rate; preserves observability of permitted absence | `lease_end_date: expected_nulls=27, unexpected_nulls=0` |
 

@@ -16,6 +16,7 @@ from psycopg.types.json import Jsonb
 
 from . import __version__
 from .backup import backup
+from .export import export_csv
 from .contract import LINEAGE, LOCK_ID, OUTPUT_COLUMNS, OUTPUT_TABLES, SCHEMA_VERSION
 from .models import LoadError, Settings, atomic_json
 from .package import freeze, read_json
@@ -55,7 +56,8 @@ def load(settings: Settings, handover: Path, *, dry_run: bool = False,
                   load_started_at=now(), load_code_version=__version__, target_schema_version=SCHEMA_VERSION,
                   target_schema="warehouse", load_type="FULL", write_logic="REPLACE_SNAPSHOT",
                   checks=[], tables={}, retryable=False, attempt_number=attempt_number,
-                  retry_of_run_id=retry_of, notification_status="PENDING", dry_run=dry_run)
+                  retry_of_run_id=retry_of, notification_status="PENDING", dry_run=dry_run,
+                  export_status="NOT_APPLICABLE", export_path=None)
     result["resource_settings"] = {key: getattr(settings, key) for key in (
         "budget_seconds", "warning_seconds", "min_free_bytes", "warning_free_ratio", "lock_seconds")}
     conn = None
@@ -260,6 +262,15 @@ def load(settings: Settings, handover: Path, *, dry_run: bool = False,
                 writer.writerow(["run_id", "table_name", "line_number", "check_id", "reason"])
                 writer.writerow([run_id, exc.table_name, exc.line_number, code, result["error_message"]])
     finally:
+        # Export errors cannot undo or change a confirmed database publication.
+        if committed and result["status"] == "SUCCESS" and package:
+            try:
+                result["export_path"] = str(export_csv(root, package, result))
+                result["export_status"] = "SUCCESS"
+            except Exception:
+                result.update(export_status="FAILED", export_error_code="EXPORT_FAILED",
+                              export_error_message="Load successful, export failed; frozen inputs retained",
+                              export_recovery_path=str(package.folder))
         if not committed:
             for detail in result["tables"].values():
                 detail.update(records_inserted=0, records_loaded=0, records_updated=0,
@@ -290,6 +301,7 @@ def load(settings: Settings, handover: Path, *, dry_run: bool = False,
                 finally:
                     conn.close()
         if (package and result["status"] in {"SUCCESS", "SKIPPED_ALREADY_LOADED", "DRY_RUN"}
+                and result["export_status"] != "FAILED"
                 and package.folder.resolve().is_relative_to((root / "loaded" / "_work").resolve())):
             shutil.rmtree(package.folder)
     return result

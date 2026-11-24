@@ -67,6 +67,7 @@ class ExistingWarehouseTests(unittest.TestCase):
             self.assertEqual([{k:v for k,v in c.items() if k != "definition"} for c in actual["constraints"]],
                              [{k:v for k,v in c.items() if k != "definition"} for c in expected["catalog"]["constraints"]])
             expected["catalog"] = actual
+            self.expected = expected
             self.contract_patch = patch("spartment.stage3_load.backend.existing_contract", return_value=expected)
             self.contract_patch.start()
             self.addCleanup(self.contract_patch.stop)
@@ -87,6 +88,44 @@ class ExistingWarehouseTests(unittest.TestCase):
     def current(self):
         with psycopg.connect(self.dsn) as conn:
             return conn.execute("SELECT batch_id FROM warehouse_meta.current_batch").fetchone()
+
+    def test_migration_preserves_data_is_repeatable_and_rejects_drift(self):
+        from copy import deepcopy
+        from spartment.stage3_load.migration import migrate_announcements
+        from spartment.stage3_load.models import LoadError
+        first = load(self.settings, self.path)
+        self.assertEqual(first["status"], "SUCCESS", first)
+        expected = self.expected
+        previous = deepcopy(expected)
+        previous.update(version="1.0", fingerprint="previous-test-contract")
+        with psycopg.connect(self.dsn, autocommit=True) as conn:
+            conn.execute("ALTER TABLE warehouse.fact_notification DROP CONSTRAINT fact_notification_check_0")
+            conn.execute("""ALTER TABLE warehouse.fact_notification ADD CONSTRAINT fact_notification_check_0
+                CHECK (kind IN ('BILL','PAYMENT','REQUEST','TENANCY','UNKNOWN'))""")
+            previous["catalog"] = existing_catalog(conn)
+            conn.execute("UPDATE warehouse_meta.schema_contract SET version=%s,fingerprint=%s,catalog=%s",
+                         (previous['version'],previous['fingerprint'],Jsonb(previous['catalog'])))
+            self.assertTrue(migrate_announcements(conn, previous, expected))
+            self.assertFalse(migrate_announcements(conn, previous, expected))
+            ExistingWarehouse().validate(conn)
+            self.assertEqual(self.current(), (first["batch_id"],))
+            self.assertEqual(conn.execute("SELECT count(*) FROM warehouse_meta.batches").fetchone()[0], 1)
+            conn.execute("ALTER TABLE warehouse.fact_notification ADD COLUMN unrelated text")
+            with self.assertRaises(LoadError):
+                migrate_announcements(conn, previous, expected)
+
+    def test_announcement_is_loaded_and_exported(self):
+        import csv
+        rows = base_rows()
+        rows["notifications"][0]["kind"] = "announcement"
+        rows["inquiries"][0]["phone"] = ""
+        rows["payments"][0]["reference_note"] = ""
+        result = load(self.settings, self.batch("announcement", rows))
+        self.assertEqual(result["status"], "SUCCESS", result)
+        with psycopg.connect(self.dsn) as conn:
+            self.assertEqual(conn.execute("SELECT kind FROM warehouse.fact_notification").fetchone()[0], "ANNOUNCEMENT")
+        with (Path(result["export_path"]) / "fact_notification.csv").open(newline="", encoding="utf-8") as stream:
+            self.assertEqual(next(csv.DictReader(stream))["kind"], "ANNOUNCEMENT")
 
     def test_success_duplicate_and_existing_lineage(self):
         dry = load(self.settings, self.path, dry_run=True)

@@ -12,6 +12,30 @@ from spartment.stage2_transform.pipeline import transform
 
 
 class OptionalNullProfileTests(unittest.TestCase):
+    def test_announcement_and_optional_blanks_are_approved(self):
+        with tempfile.TemporaryDirectory() as temp:
+            rows = base_rows()
+            rows["payments"][0]["reference_note"] = ""
+            rows["inquiries"][0]["phone"] = ""
+            rows["notifications"][0]["kind"] = "announcement"
+            result = self.run_batch(Path(temp), rows, "optional-announcement")
+            self.assertEqual(result.decision, "APPROVED")
+            self.assertEqual(result.outputs["fact_notification"][0]["kind"], "ANNOUNCEMENT")
+            self.assertFalse(result.outputs["fact_payment"][0]["reference_note"])
+            self.assertFalse(result.outputs["fact_inquiry"][0]["phone"])
+            from spartment.stage2_transform.null_profile import optional_null_profile
+            for table, column in [("fact_payment", "reference_note"), ("fact_inquiry", "phone")]:
+                profile = optional_null_profile(table, result.outputs[table])[column]
+                self.assertEqual(profile["raw_null_rate"], 1)
+                self.assertEqual(profile["unexpected_nulls"], 0)
+
+    def test_unrecognized_notification_still_holds(self):
+        with tempfile.TemporaryDirectory() as temp:
+            rows = base_rows()
+            rows["notifications"][0]["kind"] = "unrecognized-kind"
+            result = self.run_batch(Path(temp), rows, "unknown-kind")
+            self.assertNotEqual(result.decision, "APPROVED")
+
     def run_batch(self, root, rows, suffix):
         parent = PARENT + "-" + suffix
         write_batch(root, rows, parent=parent)
@@ -39,7 +63,7 @@ class OptionalNullProfileTests(unittest.TestCase):
     def test_high_missing_contact_rate_still_holds_batch(self):
         with tempfile.TemporaryDirectory() as temp:
             rows = base_rows()
-            rows["inquiries"][0]["phone"] = ""
+            rows["profiles"][0]["phone"] = ""
             result = self.run_batch(Path(temp), rows, "missing-contact")
             self.assertEqual(result.decision, "MANUAL REVIEW")
             self.assertFalse(result.released)
@@ -51,12 +75,12 @@ class OptionalNullProfileTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)
             rows = base_rows()
-            second = deepcopy(rows["inquiries"][0])
+            second = deepcopy(rows["profiles"][0])
             second["id"] = "abababab-abab-4bab-8bab-abababababab"
-            rows["inquiries"].append(second)
+            rows["profiles"].append(second)
             first = self.run_batch(root, rows, "baseline")
             self.assertEqual(first.decision, "APPROVED")
-            rows["inquiries"][1]["phone"] = ""
+            rows["profiles"][1]["phone"] = ""
             result = self.run_batch(root, rows, "degraded")
             self.assertEqual(result.decision, "MANUAL REVIEW")
             check = next(c for c in result.checks if c.check_name.startswith("V-18"))

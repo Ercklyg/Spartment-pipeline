@@ -468,7 +468,7 @@ CREATE TABLE warehouse."fact_notification" (
   PRIMARY KEY ("notification_key"),
   UNIQUE ("notification_id"),
   FOREIGN KEY ("tenant_key") REFERENCES warehouse."dim_tenant" ("tenant_key"),
-  CHECK ("kind" IN ('BILL','PAYMENT','REQUEST','TENANCY','UNKNOWN')),
+  CHECK ("kind" IN ('BILL','PAYMENT','REQUEST','TENANCY','ANNOUNCEMENT','UNKNOWN')),
   CHECK ("notification_key" ~ '^[0-9a-f]{16}$'),
   CHECK ("tenant_key" ~ '^[0-9a-f]{16}$')
 );

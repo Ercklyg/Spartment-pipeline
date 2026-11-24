@@ -10,7 +10,7 @@ This document follows all nine sections of the supplied Stage 3 lab. The `supaba
 
 The laptop executes the batch scripts; Supabase hosts the destination. No streaming, micro-batch, new cleaning, re-extraction or business recalculation occurs in Load. A successful connection or isolated test is not evidence that an operational refresh or scheduled run occurred.
 
-**Verified execution:** a real-source approved batch has now been backed up, reconciled and published successfully: 2,293 analytical rows. An identical replay was skipped without extra analytical writes. The full 55-test suite passed. See [load-verification.md](load-verification.md) for measured results and the separately recorded local-disk warning review. Scheduler activation is not claimed.
+**Latest execution (2026-11-24):** extraction passed and transformation `spartment-transform-2026-11-24-2310` was APPROVED under rules version 1.2. After the warehouse migration to contract version 1.1 and explicit user review of PRE-12, load `spartment-load-2026-11-24-231836-c124d823` committed 2,515 analytical rows and exported 13 checksum-verified CSVs plus a manifest. The pre-refresh backup checksum and commit evidence were verified. Earlier held attempts and the 2026-11-13 publication are historical evidence. See [load-verification.md](load-verification.md). Scheduler activation is not claimed.
 
 ---
 
@@ -234,6 +234,7 @@ Categories are disjoint; a staged then tentatively inserted row counts once. Par
 | Attempt/table evidence | `logs/spartment-load/<run_date>/<run_id>.json` and `<run_id>_<table>.json` |
 | Completion | `loaded/_handover/<run_id>.json` |
 | Frozen input | `loaded/_work/<run_id>/` |
+| Successful-load CSV exports | `loaded/exports/<run_id>/<table>.csv` and `manifest.json` |
 | Confirmed rejects | `quarantine/load/<run_date>/<run_id>/<table>_rejected.csv` |
 | Dump/manifest | `backups/spartment-warehouse/<run_id>.dump` and `.json` |
 | Archive/retention audit | `logs/spartment-load/_archive/` and `_retention/` |
@@ -257,6 +258,8 @@ Categories are disjoint; a staged then tentatively inserted row counts once. Par
 | resource_settings, capacity, backup_path, previous_batch_id | Capacity/recovery basis |
 | warning_review | Reviewer/time/reason, named warnings, exact batch/checksums |
 | notification_status | Actual console/artifact reporting, not unconfigured delivery |
+| export_status, export_path | SUCCESS and export folder after confirmed publication; NOT_APPLICABLE for other outcomes |
+| export_error_code/message, export_recovery_path | Export failure diagnosis and retained frozen inputs; database publication stays successful |
 
 `warehouse_meta.attempts.report` contains the attempt and per-table details. Accepted batches retain publication evidence/checksum maps in `batches.report`. Final local/attempt records include post-commit confirmation/timing. Keep existing history/schema_contract unchanged.
 
@@ -272,7 +275,8 @@ Monitoring uses status/timing/checks; troubleshooting uses error codes/steps; au
 | Summaries, batch history, completion | 365 days minimum; conservatively retained indefinitely by this version | Maintainer/owner; runtime cannot delete batch history |
 | Load rejection evidence | 365 days; no automatic deletion | Maintainer/Super Admin; financial deletion needs owner approval |
 | Held/failed frozen inputs | Until resolved, then at least 90 days; conservatively retained | Restricted local account access |
-| Successful work copies | Remove after durable completion evidence | Original Stage 2 artifacts follow their own retention |
+| Successful work copies | Remove after durable completion evidence and successful CSV export; retain if export fails | Original Stage 2 artifacts follow their own retention |
+| Successful-load CSV exports | Retain locally without automatic deletion | Maintainer reads or submits; may contain personal data |
 | Logical backups | At least three daily copies/seven days; major-change copy at least 30 days | Owner restores; no automatic expiry in this version |
 
 Before replacing a current snapshot, download a custom-format logical dump of warehouse and warehouse_meta, verify `pg_restore --list` and SHA-256 manifest. Test restore into a separate empty database, never over the live warehouse. This is not a claim about paid Supabase backup features.
@@ -344,6 +348,8 @@ Set SPARTMENT_PG_BIN when pg_dump/pg_restore are not on PATH; optional SPARTMENT
 
 ### 10.2 Load and Recovery
 
+Rules version 1.2 supports `ANNOUNCEMENT` notifications and accepts optional blank payment notes and inquiry phones. Existing Supabase warehouses require the owner-only `python -m spartment.stage3_load.cli migrate-announcements` upgrade before loading this version. Back up `warehouse` and `warehouse_meta` first. The migration checks the complete reviewed version 1.0 catalog, extends only the notification-kind constraint, and registers the reviewed version 1.1 catalog in one transaction. Repeated execution verifies the upgraded contract without changing it; unrelated drift rolls back. The preserved previous contract is `warehouse/supabase-existing-contract-v1.json`. Existing local-reference databases must be explicitly migrated or recreated as disposable databases for schema version 1.1.0; ordinary loading never alters schemas.
+
 ```powershell
 .\.venv\Scripts\python.exe -m spartment.stage3_load.cli run --handover transformed/_handover/TRANSFORMATION_RUN_ID.json --dry-run
 .\.venv\Scripts\python.exe -m spartment.stage3_load.cli run --handover transformed/_handover/TRANSFORMATION_RUN_ID.json
@@ -353,6 +359,10 @@ Set SPARTMENT_PG_BIN when pg_dump/pg_restore are not on PATH; optional SPARTMENT
 ```
 
 Replace uppercase IDs with actual artifacts. Dry run stages then rolls back; it is not publication. Review JSON contains batch_id, exact output_checksums, waived_checks, reviewed_by, reviewed_at and review_reason. It cannot bypass critical checks. CLI exits: 0 success/no-op/dry-run/inspection; 1 failed execution; 2 configuration; 5 warning hold; 6 unknown commit.
+
+After each confirmed successful publication, the loader saves 13 analytical CSVs in `loaded/exports/<run_id>/`. These are checksum-verified copies of the frozen input reconciled against the loaded tables; load metadata columns are represented in the manifest rather than added to the CSVs. `manifest.json` identifies the load, transformation, batch, publication time, table row counts and SHA-256 checksums. Empty tables retain their headers. The CLI and completion report include `export_status` and `export_path`. Failed, held, dry-run and already-loaded attempts create no new export.
+
+If file export fails after commit, database status remains SUCCESS (CLI exit 0), with `export_status=FAILED` and a sanitized message. `export_recovery_path` identifies the retained validated inputs for recovering the files. Resolve the file issue and recover from those inputs; rerunning a committed batch skips publication and does not regenerate the export. Incomplete exports are never published under the final folder name. Existing SQL schema files and pre-refresh `.dump` backups remain unchanged; no new SQL export is generated.
 
 ### 10.3 Tests and Scheduling
 
